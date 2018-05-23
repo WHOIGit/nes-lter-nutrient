@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eml:eml packageId="nes-lter-nutrient" scope="system"
+  system="https://pasta.edirepository.org"
+  xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1"
+  xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
+  xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="eml://ecoinformatics.org/eml-2.1.1 http://nis.lternet.edu/schemas/EML/eml-2.1.1/eml.xsd">
+  <access authSystem="https://pasta.edirepository.org/authentication"
+    order="allowFirst" scope="document" system="https://pasta.edirepository.org">
+    <allow>
+      <principal>uid=NES,o=lter,dc=ecoinformatics,dc=org</principal>
+      <permission>all</permission>
+    </allow>
+    <allow>
+      <principal>public</principal>
+      <permission>read</permission>
+    </allow>
+  </access>
+  <dataset scope="document">
+    <alternateIdentifier>nes-lter-nutrient</alternateIdentifier>
+    <shortName>Nutrients</shortName>
+    <title>Nutrient concentration measured at Martha's Vineyard Coastal Observatory (nitrate + nitrite, silicate, phosphate), 2003-2017</title>
+    <creator id="whoi">
+      <organizationName>Woods Hole Oceanographic Institution</organizationName>
+      <address>
+        <deliveryPoint>266 Woods Hole Road</deliveryPoint>
+        <city>Woods Hole</city>
+        <administrativeArea>Massachusetts</administrativeArea>
+        <postalCode>02543-1050</postalCode>
+        <country>USA</country>
+      </address>
+    </creator>
+    <metadataProvider id="nes-lter">
+      <organizationName>Northeast Shelf LTER</organizationName>
+      <address>
+        <deliveryPoint>266 Woods Hole Road</deliveryPoint>
+        <city>Woods Hole</city>
+        <administrativeArea>Massachusetts</administrativeArea>
+        <postalCode>02543-1050</postalCode>
+        <country>USA</country>
+      </address>
+    </metadataProvider>
+    <pubDate>2017-04-27</pubDate>
+    <abstract>Foobar</abstract>
+    <keywordSet>
+      <keyword>measurements</keyword>
+      <keyword>concentration</keyword>
+      <keywordThesaurus>LTER Controlled Vocabulary</keywordThesaurus>
+    </keywordSet>
+    <intellectualRights>
+      <para>The data available here are intended for scholarly use by the research community,
+                with the express understanding that data users will properly acknowledge the originating investigator. Use or
+                reproduction of any material herein for any commercial purpose is prohibited without prior written permission
+                from the responsible party.
+            </para>
+    </intellectualRights>
+    <coverage>
+      <temporalCoverage>
+        <rangeOfDates>
+          <beginDate>
+            <calendarDate>2003-05-29</calendarDate>
+          </beginDate>
+          <endDate>
+            <calendarDate>2017-05-30</calendarDate>
+          </endDate>
+        </rangeOfDates>
+      </temporalCoverage>
+      <geographicCoverage>
+        <geographicDescription>Martha's Vineyard Coastal Observatory</geographicDescription>
+        <boundingCoordinates>
+          <westBoundingCoordinate>-70.6839</westBoundingCoordinate>
+          <eastBoundingCoordinate>-70.4151</eastBoundingCoordinate>
+          <northBoundingCoordinate>41.339</northBoundingCoordinate>
+          <southBoundingCoordinate>41.1364</southBoundingCoordinate>
+        </boundingCoordinates>
+      </geographicCoverage>
+    </coverage>
+    <contact>
+      <positionName>NES LTER Information Manager</positionName>
+      <organizationName>Northeast Shelf LTER</organizationName>
+      <electronicMailAddress>lter-nes-info@whoi.edu</electronicMailAddress>
+    </contact>
+    <publisher>
+      <references>nes-lter</references>
+    </publisher>
+    <dataTable id="nes-lter-nutrient">
+      <entityName>nes-lter-nutrient</entityName>
+      <entityDescription>Tabular representation of dataset</entityDescription>
+      <physical>
+        <objectName>nes-lter-nutrient.csv</objectName>
+        <characterEncoding>ASCII</characterEncoding>
+        <dataFormat>
+          <textFormat>
+            <numHeaderLines>1</numHeaderLines>
+            <numFooterLines>0</numFooterLines>
+            <recordDelimiter>\n</recordDelimiter>
+            <attributeOrientation>column</attributeOrientation>
+            <simpleDelimited>
+              <fieldDelimiter>,</fieldDelimiter>
+              <quoteCharacter>"</quoteCharacter>
+              <literalCharacter>\</literalCharacter>
+            </simpleDelimited>
+          </textFormat>
+        </dataFormat>
+        <distribution>
+          <online>
+            <url function="download">http://example.org/not-real</url>
+          </online>
+        </distribution>
+      </physical>
+      <attributeList>
+        <attribute>
+          <attributeName>time (UTC)</attributeName>
+          <attributeDefinition>Date/time of measurement in UTC</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">date</storageType>
+          <measurementScale>
+            <dateTime>
+              <formatString>yyyy-MM-ddTHH:mm:ssZ</formatString>
+            </dateTime>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>latitude</attributeName>
+          <attributeDefinition>Location of sample (latitude)</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <interval>
+              <unit>
+                <standardUnit>degree</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>No data available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>longitude</attributeName>
+          <attributeDefinition>Location of sample (longitude)</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <interval>
+              <unit>
+                <standardUnit>degree</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </interval>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>No data available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>z</attributeName>
+          <attributeLabel>Depth</attributeLabel>
+          <attributeDefinition>Depth of sample below sea level</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>meter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>integer</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>event_number_niskin</attributeName>
+          <attributeDefinition>Code identifying event number and niskin bottle</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Code identifying event number and niskin bottle</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>No data available</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>ntra_a</attributeName>
+          <attributeDefinition>Nitrate + nitrite concentration, replicate A</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>ntra_b</attributeName>
+          <attributeDefinition>Nitrate + nitrite concentration, replicate B</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>ntra_c</attributeName>
+          <attributeDefinition>Nitrate + nitrite concentration, replicate C</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>slca_a</attributeName>
+          <attributeDefinition>Silicate concentration, replicate A</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>          
+        </attribute>
+        <attribute>
+          <attributeName>slca_b</attributeName>
+          <attributeDefinition>Silicate concentration, replicate B</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>          
+        </attribute>
+        <attribute>
+          <attributeName>slca_c</attributeName>
+          <attributeDefinition>Silicate concentration, replicate C</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>          
+        </attribute>
+        <attribute>
+          <attributeName>phos_a</attributeName>
+          <attributeDefinition>Phosphate concentration, replicate A</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>          
+        </attribute>
+        <attribute>
+          <attributeName>phos_b</attributeName>
+          <attributeDefinition>Phosphate concentration, replicate B</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>          
+        </attribute>
+        <attribute>
+          <attributeName>phos_c</attributeName>
+          <attributeDefinition>Phosphate concentration, replicate C</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>          
+        </attribute>
+      </attributeList>
+    </dataTable>
+  </dataset>
+  <additionalMetadata>
+    <metadata>
+      <stmml:unitList xmlns="http://www.xml-cml.org/schema/stmml"
+        xmlns:sch="http://www.ascc.net/xml/schematron"
+        xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.1"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.xml-cml.org/schema/stmml-1.1 stmml.xsd">
+        <stmml:unit abbreviation="µmol/L" constantToSI="0"
+          id="microMolePerLiter" multiplierToSI="0.000001"
+          name="microMolePerLiter" parentSI="molarity" unitType="amountOfSubstanceConcentration">
+          <stmml:description>micromoles per liter of solution</stmml:description>
+        </stmml:unit>
+      </stmml:unitList>
+    </metadata>
+  </additionalMetadata>
+</eml:eml>
