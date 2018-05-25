@@ -62,7 +62,7 @@
     <keywordSet>
       <keyword>Silicate</keyword>
       <keywordThesaurus>Global Change Master Directory (GCMD)</keywordThesaurus>
-    </keywordSet>
+    </keywordSet>  
     <intellectualRights>
       <para>
         This data package is licensed under the
@@ -103,8 +103,24 @@
       <methodStep>
         <description>
           <section>
-            <title></title>
-            <para></para>
+            <title>CTD/Rosette Bottle and Bucket Sampling on NES-LTER cruises</title>
+            <para>Samples were collected from the water column at multiple depths using Niskin bottles on a CTD/rosette system. Occasionally Niskin bottles were deployed on a wire. Samples were collected at the surface (z = 0) with a bucket.</para>
+          </section>
+        </description>
+      </methodStep>
+      <methodStep>
+        <description>
+          <section>
+            <title>Nutrient Sampling Protocol</title>
+            <para>Following the WHOI Nutrient Facility Nutrient Sampling Protocol,</para>
+          </section>
+        </description>
+      </methodStep>
+      <methodStep>
+        <description>
+          <section>
+            <title>WHOI Nutrient Facility Nutrient Analysis</title>
+            <para>Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/). Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. As of 2012, the facility operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control.  Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good.  If the samples fall outside of the duplicate / spike addition quality control they are rerun until they fall within quality control parameters.</para>
           </section>
         </description>
       </methodStep>
@@ -192,7 +208,7 @@
               <literalCharacter>\</literalCharacter>
             </simpleDelimited>
           </textFormat>
-        </dataFormat>
+        </dataFormat>        
         <distribution>
           <online>
             <url function="download">http://example.org/not-real</url>
