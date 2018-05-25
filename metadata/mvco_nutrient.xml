@@ -19,7 +19,7 @@
   <dataset scope="document">
     <alternateIdentifier>nes-lter-nutrient</alternateIdentifier>
     <shortName>Nutrients</shortName>
-    <title>Nutrient concentration measured at Martha's Vineyard Coastal Observatory (nitrate + nitrite, silicate, phosphate), 2003-2017</title>
+    <title>Dissolved inorganic nutrients from NES-LTER cruises, including 4 macro-nutrients from water column bottle samples, 2003 - 2017 (ongoing)</title>
     <creator id="whoi">
       <organizationName>Woods Hole Oceanographic Institution</organizationName>
       <address>
@@ -40,20 +40,30 @@
         <country>USA</country>
       </address>
     </metadataProvider>
-    <pubDate>2017-04-27</pubDate>
-    <abstract>Foobar</abstract>
+    <pubDate>2018</pubDate>
+    <abstract></abstract>
     <keywordSet>
-      <keyword>measurements</keyword>
-      <keyword>concentration</keyword>
+      <keyword>inorganic nutrients</keyword>
+      <keywordThesaurus>LTER Core Research Areas</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword>chemistry</keyword>
+      <keyword>oceanography</keyword>
+      <keyword>seawater</keyword>
+      <keyword>nutrients</keyword>
+      <keyword>dissolved nutrients</keyword>
+      <keyword>inorganic nutrients</keyword>
+      <keyword>ammonium</keyword>
+      <keyword>nitrate</keyword>
+      <keyword>nitrite</keyword>
+      <keyword>phosphate</keyword>
       <keywordThesaurus>LTER Controlled Vocabulary</keywordThesaurus>
     </keywordSet>
-    <intellectualRights>
-      <para>The data available here are intended for scholarly use by the research community,
-                with the express understanding that data users will properly acknowledge the originating investigator. Use or
-                reproduction of any material herein for any commercial purpose is prohibited without prior written permission
-                from the responsible party.
-            </para>
-    </intellectualRights>
+    <keywordSet>
+      <keyword>Silicate</keyword>
+      <keywordThesaurus>Global Change Master Directory (GCMD)</keywordThesaurus>
+    </keywordSet>
+    <intellectualRights></intellectualRights>
     <coverage>
       <temporalCoverage>
         <rangeOfDates>
@@ -83,6 +93,11 @@
     <publisher>
       <references>nes-lter</references>
     </publisher>
+    <methods>
+      <methodStep>
+        <description></description>
+      </methodStep>
+    </methods>
     <dataTable id="nes-lter-nutrient">
       <entityName>nes-lter-nutrient</entityName>
       <entityDescription>Tabular representation of dataset</entityDescription>
@@ -181,7 +196,7 @@
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Code identifying event number and niskin bottle</definition>
+                  <definition>Code identifying event number and niskin bottle (or bucket sample if z = 0)</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
