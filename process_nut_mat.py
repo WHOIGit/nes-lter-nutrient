@@ -150,6 +150,18 @@ del df['Start_Time_UTC']
 
 df = df.rename(columns=COL_MAP)
 
+# write out CSV before doing netcdf representation
+
+csv_df = df.copy()
+del csv_df['event_number']
+csv_df = csv_df.rename(columns={
+    'y': 'latitude',
+    'x': 'longitude',
+    't': 'time',
+})
+csv_df.to_csv('nes-lter-nutrient.csv',index=False,na_rep='NaN',
+    float_format='%.3f')
+
 # generate one NetCDF profile for each event
 
 for event_number, sdf in df.groupby('event_number'):
