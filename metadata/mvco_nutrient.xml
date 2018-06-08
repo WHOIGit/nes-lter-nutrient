@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml packageId="nes-lter-nutrient" scope="system"
+<eml:eml packageId="[FIXME]" scope="system"
   system="https://pasta.edirepository.org"
   xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1"
   xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
@@ -19,18 +19,8 @@
   <dataset scope="document">
     <alternateIdentifier>nes-lter-nutrient</alternateIdentifier>
     <shortName>Nutrients</shortName>
-    <title>Dissolved inorganic nutrients from NES-LTER cruises, including 4 macro-nutrients from water column bottle samples, 2003 - 2017 (ongoing)</title>
-    <creator id="whoi">
-      <organizationName>Woods Hole Oceanographic Institution</organizationName>
-      <address>
-        <deliveryPoint>266 Woods Hole Road</deliveryPoint>
-        <city>Woods Hole</city>
-        <administrativeArea>Massachusetts</administrativeArea>
-        <postalCode>02543-1050</postalCode>
-        <country>USA</country>
-      </address>
-    </creator>
-    <metadataProvider id="nes-lter">
+    <title>Dissolved inorganic nutrients from NES-LTER cruises, including 4 macro-nutrients from water column bottle samples, 2003 - (ongoing)</title>
+    <creator id="nes-lter">
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <address>
         <deliveryPoint>266 Woods Hole Road</deliveryPoint>
@@ -39,6 +29,9 @@
         <postalCode>02543-1050</postalCode>
         <country>USA</country>
       </address>
+    </creator>
+    <metadataProvider>
+      <references>nes-lter</references>
     </metadataProvider>
     <pubDate>2018</pubDate>
     <abstract>Dissolved inorganic nutrients are measured from water column bottle samples from the NES region (since 2003, ongoing) and include nitrate + nitrite, ammonium, silicate, and phosphate. Sampling frequency is approximately monthly. For year 2003 - 2017 prior to the start of the NES-LTER project, sampling was usually in the vicinity of the Martha's Vineyard Coastal Observatory. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. Each sample may have up to 3 replicates, indicated by a, b, and c in the column headers of the data table. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in µmol/L).</abstract>
@@ -93,7 +86,7 @@
     </coverage>
     <contact>
       <positionName>NES LTER Information Manager</positionName>
-      <organizationName>Northeast Shelf LTER</organizationName>
+      <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <electronicMailAddress>lter-nes-info@whoi.edu</electronicMailAddress>
     </contact>
     <publisher>
@@ -111,8 +104,8 @@
       <methodStep>
         <description>
           <section>
-            <title>Nutrient Sampling Protocol</title>
-            <para>Following the WHOI Nutrient Facility Nutrient Sampling Protocol,</para>
+            <title>Nutrient Filtering Protocol</title>
+            <para>The following is paraphrased from the WHOI Nutrient Facility "Cruise Protocol for Filtering Nutrient Samples," version 23 April 2007: "Fill a B-D 60 ml LUER-LOKTM syringe with approximately 10mls of water and partially insert plunger.  Shake vigorously to cleanse the inside of the syringe and discard water.  Repeat three times. Completely fill syringe with sample. Insert the plunger and remove any air in the syringe.  Attach a EMD Millipore sterile Sterivex (.22µm) filter to the syringe.  Advance the plunger and force 60mls of water through the filter to rinse the filter of any previous sample. Rinse the filter with a full syringe each time a new sample is introduced to the syringe. After cleaning the filter, refill the syringe and rinse the sample vial 3 times with 5mls of filtered water. For each rinse, replace the cap and shake vigorously. Filter 17 ml of sample directly into the sample vial and replace the cap and proceed to the next sample. Immediately store samples in a -20C freezer and keep frozen until analysis."</para>
           </section>
         </description>
       </methodStep>
@@ -121,6 +114,14 @@
           <section>
             <title>WHOI Nutrient Facility Nutrient Analysis</title>
             <para>Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/). Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. As of 2012, the facility operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control.  Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good.  If the samples fall outside of the duplicate / spike addition quality control they are rerun until they fall within quality control parameters.</para>
+          </section>
+        </description>
+      </methodStep>
+      <methodStep>
+        <description>
+          <section>
+            <title>Nutrient Data Processing</title>
+            <para>All Below Detection Limit values are set to zero. The detection limit is different depending on the nutrient, and the detection limit has gotten lower over the time series with improving technology.</para>
           </section>
         </description>
       </methodStep>
@@ -191,8 +192,8 @@
       </funding>
     </project>
     <dataTable id="nes-lter-nutrient">
-      <entityName>nes-lter-nutrient</entityName>
-      <entityDescription>Tabular representation of dataset</entityDescription>
+      <entityName>Dissolved inorganic nutrients from NES-LTER cruises, including 4 macro-nutrients from water column bottle samples, 2003 - (ongoing)</entityName>
+      <entityDescription>Dissolved inorganic nutrients measured from water column bottle samples from the NES region (since 2003, ongoing) including nitrate + nitrite, ammonium, silicate, and phosphate.</entityDescription>
       <physical>
         <objectName>nes-lter-nutrient.csv</objectName>
         <characterEncoding>ASCII</characterEncoding>
@@ -222,7 +223,7 @@
           <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">date</storageType>
           <measurementScale>
             <dateTime>
-              <formatString>yyyy-MM-ddTHH:mm:ssZ</formatString>
+              <formatString>YYYY-MM-DDTHH:MM:SSZ</formatString>
             </dateTime>
           </measurementScale>
         </attribute>
@@ -268,14 +269,14 @@
           <attributeName>z</attributeName>
           <attributeLabel>Depth</attributeLabel>
           <attributeDefinition>Depth of sample below sea level</attributeDefinition>
-          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
           <measurementScale>
             <ratio>
               <unit>
                 <standardUnit>meter</standardUnit>
               </unit>
               <numericDomain>
-                <numberType>integer</numberType>
+                <numberType>real</numberType>
               </numericDomain>
             </ratio>
           </measurementScale>
