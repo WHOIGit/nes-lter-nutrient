@@ -193,9 +193,20 @@ if OUTPUT_CSV:
 
     # apply precision formatting
 
-    for var in ['ntra', 'amon', 'slca', 'phos']:
+    data_cols = []
+
+    for var in ['ntra', 'slca', 'phos', 'amon']:
         for replicate in ['a', 'b', 'c']:
             colname = '{}_{}'.format(var, replicate)
-            df[colname] = list(convert_series_fixed(df[colname], SIGNIFICANT_DIGITS))
+            data_cols.append(colname)
+
+    for colname in data_cols:
+        df[colname] = list(convert_series_fixed(df[colname], SIGNIFICANT_DIGITS))
+
+    cols = ['time (UTC)', 'latitude', 'longitude', 'depth', 'event_number_niskin'] + data_cols
+    df = df[cols]
+
+    # chop off everything before april 2006
+    df = df[df['time (UTC)'] >= '2006-04-01']
 
     df.to_csv(CSV_FILENAME, index=None)
