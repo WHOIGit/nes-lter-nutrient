@@ -158,7 +158,7 @@
           </missingValueCode>
         </attribute>
         <attribute>
-          <attributeName>z</attributeName>
+          <attributeName>depth</attributeName>
           <attributeLabel>Depth</attributeLabel>
           <attributeDefinition>Depth of sample below sea level</attributeDefinition>
           <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>

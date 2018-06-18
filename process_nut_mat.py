@@ -2,6 +2,7 @@ import os
 import re
 import sys
 
+import numpy as np
 from scipy.io import loadmat
 import pandas as pd
 
@@ -9,6 +10,11 @@ from pocean.dsg.timeseriesProfile.om import OrthogonalMultidimensionalTimeseries
 
 DEFAULT_MAT_FILE = './data/nut_data_reps.mat'
 DEFAULT_OUT_DIR = './output'
+
+OUTPUT_NETCDF = False
+OUTPUT_CSV = True
+
+CSV_FILENAME = 'nes-lter-nutrient.csv'
 
 if len(sys.argv) < 3:
     in_mat_file = DEFAULT_MAT_FILE
@@ -40,7 +46,7 @@ COL_MAP = {
   'Nut_c_uM NH4+': 'amon_c',
   'Nut_a_uM SiO2-': 'slca_a',
   'Nut_b_uM SiO2-': 'slca_b',
-  'Nut_c_uM SiO2-': 'scla_c',
+  'Nut_c_uM SiO2-': 'slca_c',
   'Nut_a_uM PO43-': 'phos_a',
   'Nut_b_uM PO43-': 'phos_b',
   'Nut_c_uM PO43-': 'phos_c',
@@ -150,11 +156,46 @@ del df['Start_Time_UTC']
 
 df = df.rename(columns=COL_MAP)
 
-# generate one NetCDF profile for each event
+if OUTPUT_NETCDF:
+    # generate one NetCDF profile for each event
 
-for event_number, sdf in df.groupby('event_number'):
-    sdf['station'] = 0
-    outpath = os.path.join(out_dir,'{}.nc'.format(event_number))
-    print('writing {}...'.format(outpath))
-    OMTP.from_dataframe(sdf, outpath, attributes=NUT_ATTRS)
+    for event_number, sdf in df.groupby('event_number'):
+        sdf['station'] = 0
+        outpath = os.path.join(out_dir,'{}.nc'.format(event_number))
+        print('writing {}...'.format(outpath))
+        OMTP.from_dataframe(sdf, outpath, attributes=NUT_ATTRS)
 
+if OUTPUT_CSV:
+
+    # just outputting the dataframe using to_csv produces
+    # extra digits of precision, and applying a single float
+    # format is not appropriate because the columns have
+    # varying precision, so do this using string formatting
+
+    def convert_series_fixed(series, significant_digits=3):
+        fmt = r'{{:.{}f}}'.format(significant_digits)
+        for n in series:
+            if np.isnan(n):
+                yield 'NaN'
+            else:
+                yield fmt.format(n)
+
+    SIGNIFICANT_DIGITS = 3
+
+    # rename to be consistent with metadata
+
+    df = df.rename(columns={
+        't': 'time (UTC)',
+        'y': 'latitude',
+        'x': 'longitude',
+        'z': 'depth'
+        })
+
+    # apply precision formatting
+
+    for var in ['ntra', 'amon', 'slca', 'phos']:
+        for replicate in ['a', 'b', 'c']:
+            colname = '{}_{}'.format(var, replicate)
+            df[colname] = list(convert_series_fixed(df[colname], SIGNIFICANT_DIGITS))
+
+    df.to_csv(CSV_FILENAME, index=None)
