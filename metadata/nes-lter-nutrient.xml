@@ -227,9 +227,9 @@
           </textFormat>
         </dataFormat>        
         <distribution>
-          <online>
-            <url function="download">http://example.org/not-real</url>
-          </online>
+          <offline>
+            <mediumName>local file</mediumName>
+          </offline>
         </distribution>
       </physical>
       <attributeList>
