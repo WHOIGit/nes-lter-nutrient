@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml packageId="nes-lter-nutrient" scope="system"
+<eml:eml packageId="[FIXME]" scope="system"
   system="https://pasta.edirepository.org"
   xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1"
   xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
@@ -19,9 +19,9 @@
   <dataset scope="document">
     <alternateIdentifier>nes-lter-nutrient</alternateIdentifier>
     <shortName>Nutrients</shortName>
-    <title>Nutrient concentration measured at Martha's Vineyard Coastal Observatory (nitrate + nitrite, silicate, phosphate), 2003-2017</title>
-    <creator id="whoi">
-      <organizationName>Woods Hole Oceanographic Institution</organizationName>
+    <title>Dissolved inorganic nutrients from NES-LTER cruises, including 4 macro-nutrients from water column bottle samples, 2003 - (ongoing)</title>
+    <creator id="nes-lter">
+      <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <address>
         <deliveryPoint>266 Woods Hole Road</deliveryPoint>
         <city>Woods Hole</city>
@@ -30,29 +30,38 @@
         <country>USA</country>
       </address>
     </creator>
-    <metadataProvider id="nes-lter">
-      <organizationName>Northeast Shelf LTER</organizationName>
-      <address>
-        <deliveryPoint>266 Woods Hole Road</deliveryPoint>
-        <city>Woods Hole</city>
-        <administrativeArea>Massachusetts</administrativeArea>
-        <postalCode>02543-1050</postalCode>
-        <country>USA</country>
-      </address>
+    <metadataProvider>
+      <references>nes-lter</references>
     </metadataProvider>
-    <pubDate>2017-04-27</pubDate>
-    <abstract>Foobar</abstract>
+    <pubDate>2018</pubDate>
+    <abstract>Dissolved inorganic nutrients are measured from water column bottle samples from the NES region (since 2003, ongoing) and include nitrate + nitrite, ammonium, silicate, and phosphate. Sampling frequency is approximately monthly. For year 2003 - 2017 prior to the start of the NES-LTER project, sampling was usually in the vicinity of the Martha's Vineyard Coastal Observatory. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. Each sample may have up to 3 replicates, indicated by a, b, and c in the column headers of the data table. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in µmol/L).</abstract>
     <keywordSet>
-      <keyword>measurements</keyword>
-      <keyword>concentration</keyword>
+      <keyword>inorganic nutrients</keyword>
+      <keywordThesaurus>LTER Core Research Areas</keywordThesaurus>
+    </keywordSet>
+    <keywordSet>
+      <keyword>chemistry</keyword>
+      <keyword>oceanography</keyword>
+      <keyword>seawater</keyword>
+      <keyword>nutrients</keyword>
+      <keyword>dissolved nutrients</keyword>
+      <keyword>inorganic nutrients</keyword>
+      <keyword>ammonium</keyword>
+      <keyword>nitrate</keyword>
+      <keyword>nitrite</keyword>
+      <keyword>phosphate</keyword>
       <keywordThesaurus>LTER Controlled Vocabulary</keywordThesaurus>
     </keywordSet>
+    <keywordSet>
+      <keyword>Silicate</keyword>
+      <keywordThesaurus>Global Change Master Directory (GCMD)</keywordThesaurus>
+    </keywordSet>  
     <intellectualRights>
-      <para>The data available here are intended for scholarly use by the research community,
-                with the express understanding that data users will properly acknowledge the originating investigator. Use or
-                reproduction of any material herein for any commercial purpose is prohibited without prior written permission
-                from the responsible party.
-            </para>
+      <para>
+        This data package is licensed under the
+        <ulink url="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution License 4.0</ulink>.
+      </para>
+      <para>This data package (and its components) is made available “as is” and with no warranty of accuracy or fitness for use. The creators of this data package and the website shall not be liable for any damages resulting from misinterpretation or misuse of the data package or its components. Periodic updates of this data package may be available from the website.</para>
     </intellectualRights>
     <coverage>
       <temporalCoverage>
@@ -77,15 +86,114 @@
     </coverage>
     <contact>
       <positionName>NES LTER Information Manager</positionName>
-      <organizationName>Northeast Shelf LTER</organizationName>
+      <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <electronicMailAddress>lter-nes-info@whoi.edu</electronicMailAddress>
     </contact>
     <publisher>
       <references>nes-lter</references>
     </publisher>
+    <methods>
+      <methodStep>
+        <description>
+          <section>
+            <title>CTD/Rosette Bottle and Bucket Sampling on NES-LTER cruises</title>
+            <para>Samples were collected from the water column at multiple depths using Niskin bottles on a CTD/rosette system. Occasionally Niskin bottles were deployed on a wire. Samples were collected at the surface (z = 0) with a bucket.</para>
+          </section>
+        </description>
+      </methodStep>
+      <methodStep>
+        <description>
+          <section>
+            <title>Nutrient Filtering Protocol</title>
+            <para>The following is paraphrased from the WHOI Nutrient Facility "Cruise Protocol for Filtering Nutrient Samples," version 23 April 2007: "Fill a B-D 60 ml LUER-LOKTM syringe with approximately 10mls of water and partially insert plunger.  Shake vigorously to cleanse the inside of the syringe and discard water.  Repeat three times. Completely fill syringe with sample. Insert the plunger and remove any air in the syringe.  Attach a EMD Millipore sterile Sterivex (.22µm) filter to the syringe.  Advance the plunger and force 60mls of water through the filter to rinse the filter of any previous sample. Rinse the filter with a full syringe each time a new sample is introduced to the syringe. After cleaning the filter, refill the syringe and rinse the sample vial 3 times with 5mls of filtered water. For each rinse, replace the cap and shake vigorously. Filter 17 ml of sample directly into the sample vial and replace the cap and proceed to the next sample. Immediately store samples in a -20C freezer and keep frozen until analysis."</para>
+          </section>
+        </description>
+      </methodStep>
+      <methodStep>
+        <description>
+          <section>
+            <title>WHOI Nutrient Facility Nutrient Analysis</title>
+            <para>Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/). Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. As of 2012, the facility operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control.  Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good.  If the samples fall outside of the duplicate / spike addition quality control they are rerun until they fall within quality control parameters.</para>
+          </section>
+        </description>
+      </methodStep>
+      <methodStep>
+        <description>
+          <section>
+            <title>Nutrient Data Processing</title>
+            <para>All Below Detection Limit values are set to zero. The detection limit is different depending on the nutrient, and the detection limit has gotten lower over the time series with improving technology.</para>
+          </section>
+        </description>
+      </methodStep>
+    </methods>
+    <project>
+      <title>Northeast U.S. Shelf LTER</title>
+      <personnel>
+        <individualName>
+          <givenName>Heidi</givenName>
+          <surName>Sosik</surName>
+        </individualName>
+        <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
+        <role>Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Stace</givenName>
+          <surName>Beaulieu</surName>
+        </individualName>
+        <electronicMailAddress>sbeaulieu@whoi.edu</electronicMailAddress>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Rubau</givenName>
+          <surName>Ji</surName>
+        </individualName>
+        <electronicMailAddress>rji@whoi.edu</electronicMailAddress>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Rubao</givenName>
+          <surName>Ji</surName>
+        </individualName>
+        <electronicMailAddress>rji@whoi.edu</electronicMailAddress>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Steven</givenName>
+          <surName>Lentz</surName>
+        </individualName>
+        <electronicMailAddress>slentz@whoi.edu</electronicMailAddress>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Joel</givenName>
+          <surName>Llopiz</surName>
+        </individualName>
+        <electronicMailAddress>jllopiz@whoi.edu</electronicMailAddress>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Michael</givenName>
+          <surName>Neubert</surName>
+        </individualName>
+        <electronicMailAddress>mneubert@whoi.edu</electronicMailAddress>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <abstract>
+        <para>The Northeast U.S. Shelf (NES) Long-Term Ecological Research (LTER) project integrates observations, experiments, and models to understand and predict how planktonic food webs are changing, and how those changes impact the productivity of higher trophic levels. The NES-LTER is co-located with the Northeast U.S. Continental Shelf Large Marine Ecosystem, extending offshore North Carolina in the south to Maine in the north. Our focal cross-shelf transect extends about 150 km southward from Martha’s Vineyard to just beyond the shelf break. Our overarching question is: How is climate change impacting the pelagic NES ecosystem and, in particular, affecting the relationship between compositional (e.g., species diversity and size structure) and aggregate (e.g., rates of primary production, and transfer of energy to important forage fish species) variability?</para>
+      </abstract>
+      <funding>
+        <para>NSF Award OCE-1655686</para>
+      </funding>
+    </project>
     <dataTable id="nes-lter-nutrient">
-      <entityName>nes-lter-nutrient</entityName>
-      <entityDescription>Tabular representation of dataset</entityDescription>
+      <entityName>Dissolved inorganic nutrients from NES-LTER cruises, including 4 macro-nutrients from water column bottle samples, 2003 - (ongoing)</entityName>
+      <entityDescription>Dissolved inorganic nutrients measured from water column bottle samples from the NES region (since 2003, ongoing) including nitrate + nitrite, ammonium, silicate, and phosphate.</entityDescription>
       <physical>
         <objectName>nes-lter-nutrient.csv</objectName>
         <characterEncoding>ASCII</characterEncoding>
@@ -101,7 +209,7 @@
               <literalCharacter>\</literalCharacter>
             </simpleDelimited>
           </textFormat>
-        </dataFormat>
+        </dataFormat>        
         <distribution>
           <online>
             <url function="download">http://example.org/not-real</url>
@@ -115,7 +223,7 @@
           <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">date</storageType>
           <measurementScale>
             <dateTime>
-              <formatString>yyyy-MM-ddTHH:mm:ssZ</formatString>
+              <formatString>YYYY-MM-DDTHH:MM:SSZ</formatString>
             </dateTime>
           </measurementScale>
         </attribute>
@@ -161,14 +269,14 @@
           <attributeName>depth</attributeName>
           <attributeLabel>Depth</attributeLabel>
           <attributeDefinition>Depth of sample below sea level</attributeDefinition>
-          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">integer</storageType>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
           <measurementScale>
             <ratio>
               <unit>
                 <standardUnit>meter</standardUnit>
               </unit>
               <numericDomain>
-                <numberType>integer</numberType>
+                <numberType>real</numberType>
               </numericDomain>
             </ratio>
           </measurementScale>
@@ -181,7 +289,7 @@
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Code identifying event number and niskin bottle</definition>
+                  <definition>Code identifying event number and niskin bottle (or bucket sample if z = 0)</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
