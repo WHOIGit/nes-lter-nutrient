@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml packageId="[FIXME]" scope="system"
+<eml:eml packageId="knb-lter-nes.1.1" scope="system"
   system="https://pasta.edirepository.org"
   xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1"
   xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
@@ -19,7 +19,7 @@
   <dataset scope="document">
     <alternateIdentifier>nes-lter-nutrient</alternateIdentifier>
     <shortName>Nutrients</shortName>
-    <title>Dissolved inorganic nutrients from NES-LTER cruises, including 4 macro-nutrients from water column bottle samples, 2003 - (ongoing)</title>
+    <title>Dissolved inorganic nutrients from NES-LTER cruises, including 4 macro-nutrients from water column bottle samples, ongoing since 2006</title>
     <creator id="nes-lter">
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <address>
@@ -29,12 +29,28 @@
         <postalCode>02543-1050</postalCode>
         <country>USA</country>
       </address>
+      <electronicMailAddress>lter-nes-info@whoi.edu</electronicMailAddress>
+    </creator>
+    <creator>
+      <individualName>
+        <givenName>Heidi</givenName>
+        <surName>Sosik</surName>
+      </individualName>
+      <electronicMailAddress>hosik@whoi.edu</electronicMailAddress>
+      <userId directory="http://orcid.org/">https://orcid.org/0000-0002-4591-2842</userId>
     </creator>
     <metadataProvider>
       <references>nes-lter</references>
     </metadataProvider>
+    <associatedParty>
+      <individualName>
+        <givenName>E. Taylor</givenName>
+        <surName>Crockford</surName>
+      </individualName>
+      <role>Technician</role>
+    </associatedParty>
     <pubDate>2018</pubDate>
-    <abstract>Dissolved inorganic nutrients are measured from water column bottle samples from the NES region (since 2003, ongoing) and include nitrate + nitrite, ammonium, silicate, and phosphate. Sampling frequency is approximately monthly. For year 2003 - 2017 prior to the start of the NES-LTER project, sampling was usually in the vicinity of the Martha's Vineyard Coastal Observatory. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. Each sample may have up to 3 replicates, indicated by a, b, and c in the column headers of the data table. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in µmol/L).</abstract>
+    <abstract>Dissolved inorganic nutrients are measured from water column bottle samples from the NES region (ongoing since 2006) and include nitrate + nitrite, ammonium, silicate, and phosphate. For year 2006 - 2017 prior to the start of the NES-LTER project, sampling was usually in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. Each sample may have up to 3 replicates, indicated by a, b, and c in the column headers of the data table. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in µmol/L).</abstract>
     <keywordSet>
       <keyword>inorganic nutrients</keyword>
       <keywordThesaurus>LTER Core Research Areas</keywordThesaurus>
@@ -113,7 +129,7 @@
         <description>
           <section>
             <title>WHOI Nutrient Facility Nutrient Analysis</title>
-            <para>Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/). Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. As of 2012, the facility operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control.  Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good.  If the samples fall outside of the duplicate / spike addition quality control they are rerun until they fall within quality control parameters.</para>
+            <para>Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/). Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. As of 2013, the facility operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control. Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good. If the samples fall outside of the duplicate / spike addition quality control they are rerun until they fall within quality control parameters. Precision is to 10 ^ -3 microMolePerLiter.</para>
           </section>
         </description>
       </methodStep>
@@ -192,10 +208,10 @@
       </funding>
     </project>
     <dataTable id="nes-lter-nutrient">
-      <entityName>Dissolved inorganic nutrients from NES-LTER cruises, including 4 macro-nutrients from water column bottle samples, 2003 - (ongoing)</entityName>
-      <entityDescription>Dissolved inorganic nutrients measured from water column bottle samples from the NES region (since 2003, ongoing) including nitrate + nitrite, ammonium, silicate, and phosphate.</entityDescription>
+      <entityName>Nutrients from NES-LTER cruises, all years</entityName>
+      <entityDescription>Dissolved inorganic nutrients measured from water column bottle samples from the NES region (ongoing since 2006) including nitrate + nitrite, ammonium, silicate, and phosphate.</entityDescription>
       <physical>
-        <objectName>nes-lter-nutrient.csv</objectName>
+        <objectName>nes-lter-nutrient_20180618.csv</objectName>
         <characterEncoding>ASCII</characterEncoding>
         <dataFormat>
           <textFormat>
