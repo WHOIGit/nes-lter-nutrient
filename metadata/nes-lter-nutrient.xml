@@ -486,6 +486,63 @@
             <codeExplanation>Replicate was not run</codeExplanation>
           </missingValueCode>          
         </attribute>
+        <attribute>
+          <attributeName>amon_a</attributeName>
+          <attributeDefinition>Ammonium concentration, replicate A</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>          
+        </attribute>
+        <attribute>
+          <attributeName>amon_b</attributeName>
+          <attributeDefinition>Ammonium concentration, replicate B</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>          
+        </attribute>
+        <attribute>
+          <attributeName>amon_c</attributeName>
+          <attributeDefinition>Ammonium concentration, replicate C</attributeDefinition>
+          <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">double</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <customUnit>microMolePerLiter</customUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Replicate was not run</codeExplanation>
+          </missingValueCode>          
+        </attribute>
       </attributeList>
     </dataTable>
   </dataset>
