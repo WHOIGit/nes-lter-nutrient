@@ -239,7 +239,7 @@
           <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">date</storageType>
           <measurementScale>
             <dateTime>
-              <formatString>YYYY-MM-DDTHH:MM:SSZ</formatString>
+              <formatString>YYYY-MM-DD hh:mm:ss</formatString>
             </dateTime>
           </measurementScale>
         </attribute>
