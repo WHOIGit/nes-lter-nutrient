@@ -211,7 +211,7 @@
       <entityName>Nutrients from NES-LTER cruises, all years</entityName>
       <entityDescription>Dissolved inorganic nutrients measured from water column bottle samples from the NES region (ongoing since 2006) including nitrate + nitrite, ammonium, silicate, and phosphate.</entityDescription>
       <physical>
-        <objectName>nes-lter-nutrient_20180618.csv</objectName>
+        <objectName>nes-lter-nutrient.csv</objectName>
         <size unit="rows">965</size>
         <authentication method="MD5">b1e71a225bc94261d12a93c522f25dba</authentication>
         <characterEncoding>ASCII</characterEncoding>
@@ -219,7 +219,7 @@
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
             <numFooterLines>0</numFooterLines>
-            <recordDelimiter>\n</recordDelimiter>
+            <recordDelimiter>\r\n</recordDelimiter>
             <attributeOrientation>column</attributeOrientation>
             <simpleDelimited>
               <fieldDelimiter>,</fieldDelimiter>
@@ -301,7 +301,7 @@
         </attribute>
         <attribute>
           <attributeName>event_number_niskin</attributeName>
-          <attributeDefinition>Code identifying event number and niskin bottle</attributeDefinition>
+          <attributeDefinition>Code identifying event number and niskin bottle. Event numbers are given for day cruises to MVCO.</attributeDefinition>
           <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
           <measurementScale>
             <nominal>
