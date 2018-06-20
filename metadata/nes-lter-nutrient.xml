@@ -211,7 +211,7 @@
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
             <numFooterLines>0</numFooterLines>
-            <recordDelimiter>\r\n</recordDelimiter>
+            <recordDelimiter>\n</recordDelimiter>
             <attributeOrientation>column</attributeOrientation>
             <simpleDelimited>
               <fieldDelimiter>,</fieldDelimiter>
