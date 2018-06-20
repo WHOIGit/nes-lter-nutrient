@@ -36,7 +36,7 @@
         <givenName>Heidi</givenName>
         <surName>Sosik</surName>
       </individualName>
-      <electronicMailAddress>hosik@whoi.edu</electronicMailAddress>
+      <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
       <userId directory="http://orcid.org/">https://orcid.org/0000-0002-4591-2842</userId>
     </creator>
     <metadataProvider>
@@ -101,7 +101,7 @@
       </geographicCoverage>
     </coverage>
     <contact>
-      <positionName>NES LTER Information Manager</positionName>
+      <positionName>NES-LTER Information Manager</positionName>
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <electronicMailAddress>lter-nes-info@whoi.edu</electronicMailAddress>
     </contact>
@@ -162,14 +162,6 @@
       </personnel>
       <personnel>
         <individualName>
-          <givenName>Rubau</givenName>
-          <surName>Ji</surName>
-        </individualName>
-        <electronicMailAddress>rji@whoi.edu</electronicMailAddress>
-        <role>Co-Principal Investigator</role>
-      </personnel>
-      <personnel>
-        <individualName>
           <givenName>Rubao</givenName>
           <surName>Ji</surName>
         </individualName>
@@ -201,7 +193,7 @@
         <role>Co-Principal Investigator</role>
       </personnel>
       <abstract>
-        <para>The Northeast U.S. Shelf (NES) Long-Term Ecological Research (LTER) project integrates observations, experiments, and models to understand and predict how planktonic food webs are changing, and how those changes impact the productivity of higher trophic levels. The NES-LTER is co-located with the Northeast U.S. Continental Shelf Large Marine Ecosystem, extending offshore North Carolina in the south to Maine in the north. Our focal cross-shelf transect extends about 150 km southward from Martha’s Vineyard to just beyond the shelf break. Our overarching question is: How is climate change impacting the pelagic NES ecosystem and, in particular, affecting the relationship between compositional (e.g., species diversity and size structure) and aggregate (e.g., rates of primary production, and transfer of energy to important forage fish species) variability?</para>
+        <para>The Northeast U.S. Shelf (NES) Long-Term Ecological Research (LTER) project integrates observations, experiments, and models to understand and predict how planktonic food webs are changing, and how those changes impact the productivity of higher trophic levels. The NES-LTER is co-located with the Northeast U.S. Continental Shelf Large Marine Ecosystem, spanning the Middle Atlantic Bight and Gulf of Maine. Our focal cross-shelf transect extends about 150 km southward from Martha’s Vineyard, MA, to just beyond the shelf break. Our overarching question is: How is climate change impacting the pelagic NES ecosystem and, in particular, affecting the relationship between compositional (e.g., species diversity and size structure) and aggregate (e.g., rates of primary production, and transfer of energy to important forage fish species) variability?</para>
       </abstract>
       <funding>
         <para>NSF Award OCE-1655686</para>
@@ -209,9 +201,9 @@
     </project>
     <dataTable id="nes-lter-nutrient">
       <entityName>Nutrients from NES-LTER cruises, all years</entityName>
-      <entityDescription>Dissolved inorganic nutrients measured from water column bottle samples from the NES region (ongoing since 2006) including nitrate + nitrite, ammonium, silicate, and phosphate.</entityDescription>
+      <entityDescription>Dissolved inorganic nutrients measured from water column bottle samples taken on NES-LTER cruises (ongoing since 2006) including nitrate + nitrite, ammonium, silicate, and phosphate.</entityDescription>
       <physical>
-        <objectName>nes-lter-nutrient_20180618.csv</objectName>
+        <objectName>nes-lter-nutrient.csv</objectName>
         <size unit="rows">965</size>
         <authentication method="MD5">b1e71a225bc94261d12a93c522f25dba</authentication>
         <characterEncoding>ASCII</characterEncoding>
@@ -219,7 +211,7 @@
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
             <numFooterLines>0</numFooterLines>
-            <recordDelimiter>\n</recordDelimiter>
+            <recordDelimiter>\r\n</recordDelimiter>
             <attributeOrientation>column</attributeOrientation>
             <simpleDelimited>
               <fieldDelimiter>,</fieldDelimiter>
@@ -237,7 +229,7 @@
       <attributeList>
         <attribute>
           <attributeName>time (UTC)</attributeName>
-          <attributeDefinition>Date/time of measurement in UTC</attributeDefinition>
+          <attributeDefinition>Date/time of sample collection in UTC</attributeDefinition>
           <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">date</storageType>
           <measurementScale>
             <dateTime>
@@ -300,8 +292,8 @@
           </measurementScale>
         </attribute>
         <attribute>
-          <attributeName>event_number_niskin</attributeName>
-          <attributeDefinition>Code identifying event number and niskin bottle</attributeDefinition>
+          <attributeName>event_number</attributeName>
+          <attributeDefinition>Code identifying event number for day cruises to MVCO.</attributeDefinition>
           <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
           <measurementScale>
             <nominal>
