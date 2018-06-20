@@ -205,7 +205,7 @@
       <physical>
         <objectName>nes-lter-nutrient.csv</objectName>
         <size unit="rows">965</size>
-        <authentication method="MD5">b1e71a225bc94261d12a93c522f25dba</authentication>
+        <authentication method="MD5">e199c563daa2be2ffe0792e19b797647</authentication>
         <characterEncoding>ASCII</characterEncoding>
         <dataFormat>
           <textFormat>
