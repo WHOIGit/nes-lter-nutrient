@@ -246,6 +246,7 @@
               <unit>
                 <standardUnit>degree</standardUnit>
               </unit>
+              <precision>1e-04</precision>
               <numericDomain>
                 <numberType>real</numberType>
               </numericDomain>
@@ -265,6 +266,7 @@
               <unit>
                 <standardUnit>degree</standardUnit>
               </unit>
+              <precision>1e-04</precision>
               <numericDomain>
                 <numberType>real</numberType>
               </numericDomain>
@@ -299,7 +301,7 @@
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Code identifying event number and niskin bottle (or bucket sample if z = 0)</definition>
+                  <definition>Code identifying event number for day cruises to MVCO.</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
