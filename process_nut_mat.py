@@ -203,7 +203,7 @@ if OUTPUT_CSV:
     for colname in data_cols:
         df[colname] = list(convert_series_fixed(df[colname], SIGNIFICANT_DIGITS))
 
-    cols = ['time (UTC)', 'latitude', 'longitude', 'depth', 'event_number_niskin'] + data_cols
+    cols = ['time (UTC)', 'latitude', 'longitude', 'depth', 'event_number'] + data_cols
     df = df[cols]
 
     # chop off everything before april 2006
