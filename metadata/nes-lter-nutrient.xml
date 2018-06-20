@@ -36,7 +36,7 @@
         <givenName>Heidi</givenName>
         <surName>Sosik</surName>
       </individualName>
-      <electronicMailAddress>hosik@whoi.edu</electronicMailAddress>
+      <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
       <userId directory="http://orcid.org/">https://orcid.org/0000-0002-4591-2842</userId>
     </creator>
     <metadataProvider>
@@ -292,8 +292,8 @@
           </measurementScale>
         </attribute>
         <attribute>
-          <attributeName>event_number_niskin</attributeName>
-          <attributeDefinition>Code identifying event number and niskin bottle. Event numbers are given for day cruises to MVCO.</attributeDefinition>
+          <attributeName>event_number</attributeName>
+          <attributeDefinition>Code identifying event number for day cruises to MVCO.</attributeDefinition>
           <storageType typeSystem="http://www.w3.org/2001/XMLSchema-datatypes">string</storageType>
           <measurementScale>
             <nominal>
