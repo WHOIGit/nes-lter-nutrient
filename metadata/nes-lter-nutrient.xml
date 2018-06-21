@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml packageId="knb-lter-nes.1.1" scope="system"
+<eml:eml packageId="knb-lter-nes.1.2" scope="system"
   system="https://pasta.edirepository.org"
   xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1"
   xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
@@ -220,11 +220,6 @@
             </simpleDelimited>
           </textFormat>
         </dataFormat>        
-        <distribution>
-          <offline>
-            <mediumName>local file</mediumName>
-          </offline>
-        </distribution>
       </physical>
       <attributeList>
         <attribute>
