@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml packageId="knb-lter-nes.1.1" scope="system"
+<eml:eml packageId="knb-lter-nes.1.2" scope="system"
   system="https://pasta.edirepository.org"
   xmlns:ds="eml://ecoinformatics.org/dataset-2.1.1"
   xmlns:eml="eml://ecoinformatics.org/eml-2.1.1"
@@ -129,7 +129,7 @@
         <description>
           <section>
             <title>WHOI Nutrient Facility Nutrient Analysis</title>
-            <para>Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/). Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. As of 2013, the facility operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control. Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good. If the samples fall outside of the duplicate / spike addition quality control they are rerun until they fall within quality control parameters. Precision is to 10 ^ -3 microMolePerLiter.</para>
+            <para>Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/). Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. As of 2013, the facility operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control. Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good. If the samples fall outside of the duplicate / spike addition quality control they are rerun until they fall within quality control parameters. Precision is 1e-03 microMolePerLiter.</para>
           </section>
         </description>
       </methodStep>
@@ -220,11 +220,6 @@
             </simpleDelimited>
           </textFormat>
         </dataFormat>        
-        <distribution>
-          <offline>
-            <mediumName>local file</mediumName>
-          </offline>
-        </distribution>
       </physical>
       <attributeList>
         <attribute>
@@ -246,6 +241,7 @@
               <unit>
                 <standardUnit>degree</standardUnit>
               </unit>
+              <precision>1e-04</precision>
               <numericDomain>
                 <numberType>real</numberType>
               </numericDomain>
@@ -265,6 +261,7 @@
               <unit>
                 <standardUnit>degree</standardUnit>
               </unit>
+              <precision>1e-04</precision>
               <numericDomain>
                 <numberType>real</numberType>
               </numericDomain>
@@ -299,7 +296,7 @@
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Code identifying event number and niskin bottle (or bucket sample if z = 0)</definition>
+                  <definition>Code identifying event number for day cruises to MVCO.</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
