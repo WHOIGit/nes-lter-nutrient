@@ -1,0 +1,214 @@
+---
+title: "nutrient-mvco-eml-assembly"
+author: "Kate Morkeski"
+date: "11/12/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# define source for functions developed for the EDI packaging workflow
+#source("edi-utilities.R")
+
+# define R packages to require 
+require(here)
+require(tidyverse)
+require(readxl)
+require(lubridate)
+require(devtools)
+require(EMLassemblyline)
+require(EML)
+require(maps)
+require(xml2)
+require(geosphere)
+require(httr)
+
+#set path to root of project
+here("nes-lter-nutrient")
+
+```
+
+## Read in provided data
+```{r}
+
+input_nutrients <- read_excel('MVCO_nut_copy01Nov2021.xls') 
+
+
+```
+## Update column names
+
+```{r}
+
+# remove quotation marks and spaces
+names(input_nutrients)<- gsub("'", "", names(input_nutrients))
+names(input_nutrients)<- gsub(" ", "", names(input_nutrients))
+names(input_nutrients)<- gsub("-", "", names(input_nutrients))
+names(input_nutrients)<- gsub(" + ", "", names(input_nutrients))
+
+# combine date and time
+input_nutrients$Start_Date <- as.character(input_nutrients$Start_Date) 
+input_nutrients$Start_Time_UTC <- as.character(input_nutrients$Start_Time_UTC)
+input_nutrients$Start_Time_UTC <-gsub("1899-12-31 ", "", input_nutrients$Start_Time_UTC)
+input_nutrients$datetime <- paste(input_nutrients$Start_Date, input_nutrients$Start_Time_UTC)
+input_nutrients$datetime <- as.POSIXct(input_nutrients$datetime, format="%Y-%m-%d %H:%M:%OS")
+
+# rename nutrient columns
+input_nutrients <-  input_nutrients %>% 
+  rename(nitrate_a = `Nut_a_uMNO2+NO3`) %>% 
+  rename(nitrate_b = `Nut_b_uMNO2+NO3`) %>%
+  rename(nitrate_c = `Nut_c_uMNO2+NO3`) %>%
+  rename(ammonium_a = `Nut_a_uMNH4+`) %>%
+  rename(ammonium_b = `Nut_b_uMNH4+`) %>%
+  rename(ammonium_c = `Nut_c_uMNH4+`) %>%
+  rename(silicate_a = `Nut_a_uMSiO2`) %>%
+  rename(silicate_b = `Nut_b_uMSiO2`) %>%
+  rename(silicate_c = `Nut_c_uMSiO2`) %>%
+  rename(phosphate_a = `Nut_a_uMPO43`) %>%
+  rename(phosphate_b = `Nut_b_uMPO43`) %>%
+  rename(phosphate_c = `Nut_c_uMPO43`) %>%
+  select(-Start_Date, -Start_Time_UTC)  %>%
+  relocate(datetime, .before = Latitude)
+
+names(input_nutrients)<- tolower(names(input_nutrients))
+
+ 
+# ensure rows are in time order
+input_nutrients <- input_nutrients[order(input_nutrients$datetime),]
+
+
+
+```
+## Pivot data table to handle replicates
+
+```{r}
+
+nitrate <- input_nutrients %>% 
+ select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
+ select(-silicate_a, -silicate_b, -silicate_c) %>%
+ select(-phosphate_a, -phosphate_b, -phosphate_c)  %>% 
+ pivot_longer(cols = c(nitrate_a, nitrate_b, nitrate_c), names_to = "replicate",  values_to = "nitrate")  
+nitrate$replicate <- gsub("nitrate_", "", nitrate$replicate)
+  
+ammonium <- input_nutrients %>% 
+  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
+  select(-silicate_a, -silicate_b, -silicate_c) %>%
+  select(-phosphate_a, -phosphate_b, -phosphate_c) %>% 
+  pivot_longer(cols = c(ammonium_a, ammonium_b, ammonium_c), names_to = "replicate",  values_to = "ammonium") 
+ammonium$replicate <- gsub("ammonium_", "", ammonium$replicate)
+  
+silicate <- input_nutrients %>%  
+  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
+  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
+  select(-phosphate_a, -phosphate_b, -phosphate_c) %>%
+  pivot_longer(cols = c(silicate_a, silicate_b, silicate_c), names_to = "replicate",  values_to = "silicate") 
+silicate$replicate <- gsub("silicate_", "", silicate$replicate)
+  
+phosphate <- input_nutrients %>% 
+  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
+  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
+  select(-silicate_a, -silicate_b, -silicate_c) %>%
+  pivot_longer(cols = c(phosphate_a, phosphate_b, phosphate_c), names_to = "replicate",  values_to = "phosphate")
+phosphate$replicate <- gsub("phosphate_", "", phosphate$replicate)
+
+nutrients <- full_join(nitrate, ammonium, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
+nutrients <- full_join(nutrients, silicate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
+nutrients <- full_join(nutrients, phosphate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
+
+```
+
+## Read in previous MVCO nutrient package and compare to new data set
+
+```{r}
+
+url <- ('https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-nes.1.2&entityid=9740e9ac9cd58ed3640158fbedef8180')
+
+httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
+tf
+
+previous_nutrients <- read_csv(tf, TRUE) 
+
+
+```
+```{r}
+
+# rename nutrient columns
+previous_nutrients <-  previous_nutrients %>% 
+  rename(time = 'time (UTC)') %>% 
+  rename(nitrate_a = ntra_a) %>% 
+  rename(nitrate_b = ntra_b) %>%
+  rename(nitrate_c = ntra_c) %>%
+  rename(ammonium_a = amon_a) %>%
+  rename(ammonium_b = amon_b) %>%
+  rename(ammonium_c = amon_c) %>%
+  rename(silicate_a = slca_a) %>%
+  rename(silicate_b =  slca_b) %>%
+  rename(silicate_c =  slca_c) %>%
+  rename(phosphate_a = phos_a) %>%
+  rename(phosphate_b = phos_b) %>%
+  rename(phosphate_c = phos_c) 
+
+# ensure rows are in time order
+previous_nutrients <- previous_nutrients[order(previous_nutrients$time),]
+
+```
+## Pivot data table to handle replicates
+
+```{r}
+
+prev_nitrate <- previous_nutrients %>% 
+ select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
+ select(-silicate_a, -silicate_b, -silicate_c) %>%
+ select(-phosphate_a, -phosphate_b, -phosphate_c)  %>% 
+ pivot_longer(cols = c(nitrate_a, nitrate_b, nitrate_c), names_to = "replicate",  values_to = "nitrate")  
+prev_nitrate$replicate <- gsub("nitrate_", "", prev_nitrate$replicate)
+  
+prev_ammonium <- previous_nutrients %>% 
+  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
+  select(-silicate_a, -silicate_b, -silicate_c) %>%
+  select(-phosphate_a, -phosphate_b, -phosphate_c) %>% 
+  pivot_longer(cols = c(ammonium_a, ammonium_b, ammonium_c), names_to = "replicate",  values_to = "ammonium") 
+prev_ammonium$replicate <- gsub("ammonium_", "", prev_ammonium$replicate)
+  
+prev_silicate <- previous_nutrients %>%  
+  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
+  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
+  select(-phosphate_a, -phosphate_b, -phosphate_c) %>%
+  pivot_longer(cols = c(silicate_a, silicate_b, silicate_c), names_to = "replicate",  values_to = "silicate") 
+prev_silicate$replicate <- gsub("silicate_", "", prev_silicate$replicate)
+  
+prev_phosphate <- previous_nutrients %>% 
+  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
+  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
+  select(-silicate_a, -silicate_b, -silicate_c) %>%
+  pivot_longer(cols = c(phosphate_a, phosphate_b, phosphate_c), names_to = "replicate",  values_to = "phosphate")
+prev_phosphate$replicate <- gsub("phosphate_", "", prev_phosphate$replicate)
+
+prev_nutrients <- full_join(prev_nitrate, prev_ammonium, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
+prev_nutrients <- full_join(prev_nutrients, prev_silicate, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
+prev_nutrients <- full_join(prev_nutrients, prev_phosphate, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
+
+```
+## Compare previous nutrients data set to new data set
+```{r}
+
+#plot(pressure)
+
+```
+
+## Check range and check for outliers
+# similar to nutrient transect markdown
+
+```{r}
+
+#plot(pressure)
+
+```
+
+## EML Assembly
+
+```{r}
+
+#plot(pressure)
+
+```

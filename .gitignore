@@ -108,3 +108,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.Rproj.user
+
+# Provided Excel file
+MVCO_nut_copy01Nov2021.xls
