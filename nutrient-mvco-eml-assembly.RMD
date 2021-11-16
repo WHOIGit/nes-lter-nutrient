@@ -32,7 +32,7 @@ here("nes-lter-nutrient")
 ## Read in provided data
 ```{r}
 
-input_nutrients <- read_excel('MVCO_nut_copy01Nov2021.xls') 
+nutrients_input <- read_excel('MVCO_nut_copy01Nov2021.xls') 
 
 
 ```
@@ -41,20 +41,20 @@ input_nutrients <- read_excel('MVCO_nut_copy01Nov2021.xls')
 ```{r}
 
 # remove quotation marks and spaces
-names(input_nutrients)<- gsub("'", "", names(input_nutrients))
-names(input_nutrients)<- gsub(" ", "", names(input_nutrients))
-names(input_nutrients)<- gsub("-", "", names(input_nutrients))
-names(input_nutrients)<- gsub(" + ", "", names(input_nutrients))
+names(nutrients_input)<- gsub("'", "", names(nutrients_input))
+names(nutrients_input)<- gsub(" ", "", names(nutrients_input))
+names(nutrients_input)<- gsub("-", "", names(nutrients_input))
+names(nutrients_input)<- gsub(" + ", "", names(nutrients_input))
 
 # combine date and time
-input_nutrients$Start_Date <- as.character(input_nutrients$Start_Date) 
-input_nutrients$Start_Time_UTC <- as.character(input_nutrients$Start_Time_UTC)
-input_nutrients$Start_Time_UTC <-gsub("1899-12-31 ", "", input_nutrients$Start_Time_UTC)
-input_nutrients$datetime <- paste(input_nutrients$Start_Date, input_nutrients$Start_Time_UTC)
-input_nutrients$datetime <- as.POSIXct(input_nutrients$datetime, format="%Y-%m-%d %H:%M:%OS")
+nutrients_input$Start_Date <- as.character(nutrients_input$Start_Date) 
+nutrients_input$Start_Time_UTC <- as.character(nutrients_input$Start_Time_UTC)
+nutrients_input$Start_Time_UTC <-gsub("1899-12-31 ", "", nutrients_input$Start_Time_UTC)
+nutrients_input$datetime <- paste(nutrients_input$Start_Date, nutrients_input$Start_Time_UTC)
+nutrients_input$datetime <- as.POSIXct(nutrients_input$datetime, format="%Y-%m-%d %H:%M:%OS")
 
 # rename nutrient columns
-input_nutrients <-  input_nutrients %>% 
+nutrients_input <-  nutrients_input %>% 
   rename(nitrate_a = `Nut_a_uMNO2+NO3`) %>% 
   rename(nitrate_b = `Nut_b_uMNO2+NO3`) %>%
   rename(nitrate_c = `Nut_c_uMNO2+NO3`) %>%
@@ -70,11 +70,11 @@ input_nutrients <-  input_nutrients %>%
   select(-Start_Date, -Start_Time_UTC)  %>%
   relocate(datetime, .before = Latitude)
 
-names(input_nutrients)<- tolower(names(input_nutrients))
+names(nutrients_input)<- tolower(names(nutrients_input))
 
  
 # ensure rows are in time order
-input_nutrients <- input_nutrients[order(input_nutrients$datetime),]
+nutrients_input <- nutrients_input[order(nutrients_input$datetime),]
 
 
 
@@ -83,37 +83,37 @@ input_nutrients <- input_nutrients[order(input_nutrients$datetime),]
 
 ```{r}
 
-nitrate <- input_nutrients %>% 
+nitrate <- nutrients_input %>% 
  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
  select(-silicate_a, -silicate_b, -silicate_c) %>%
  select(-phosphate_a, -phosphate_b, -phosphate_c)  %>% 
  pivot_longer(cols = c(nitrate_a, nitrate_b, nitrate_c), names_to = "replicate",  values_to = "nitrate")  
 nitrate$replicate <- gsub("nitrate_", "", nitrate$replicate)
   
-ammonium <- input_nutrients %>% 
+ammonium <- nutrients_input %>% 
   select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
   select(-silicate_a, -silicate_b, -silicate_c) %>%
   select(-phosphate_a, -phosphate_b, -phosphate_c) %>% 
   pivot_longer(cols = c(ammonium_a, ammonium_b, ammonium_c), names_to = "replicate",  values_to = "ammonium") 
 ammonium$replicate <- gsub("ammonium_", "", ammonium$replicate)
   
-silicate <- input_nutrients %>%  
+silicate <- nutrients_input %>%  
   select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
   select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
   select(-phosphate_a, -phosphate_b, -phosphate_c) %>%
   pivot_longer(cols = c(silicate_a, silicate_b, silicate_c), names_to = "replicate",  values_to = "silicate") 
 silicate$replicate <- gsub("silicate_", "", silicate$replicate)
   
-phosphate <- input_nutrients %>% 
+phosphate <- nutrients_input %>% 
   select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
   select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
   select(-silicate_a, -silicate_b, -silicate_c) %>%
   pivot_longer(cols = c(phosphate_a, phosphate_b, phosphate_c), names_to = "replicate",  values_to = "phosphate")
 phosphate$replicate <- gsub("phosphate_", "", phosphate$replicate)
 
-nutrients <- full_join(nitrate, ammonium, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
-nutrients <- full_join(nutrients, silicate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
-nutrients <- full_join(nutrients, phosphate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
+nutrients_long <- full_join(nitrate, ammonium, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
+nutrients_long <- full_join(nutrients_long, silicate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
+nutrients_long <- full_join(nutrients_long, phosphate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
 
 ```
 
@@ -126,14 +126,14 @@ url <- ('https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-nes.
 httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
 tf
 
-previous_nutrients <- read_csv(tf, TRUE) 
+nutrients_pubd <- read_csv(tf, TRUE) 
 
 
 ```
 ```{r}
 
 # rename nutrient columns
-previous_nutrients <-  previous_nutrients %>% 
+nutrients_pubd <-  nutrients_pubd %>% 
   rename(time = 'time (UTC)') %>% 
   rename(nitrate_a = ntra_a) %>% 
   rename(nitrate_b = ntra_b) %>%
@@ -149,50 +149,80 @@ previous_nutrients <-  previous_nutrients %>%
   rename(phosphate_c = phos_c) 
 
 # ensure rows are in time order
-previous_nutrients <- previous_nutrients[order(previous_nutrients$time),]
+nutrients_pubd <- nutrients_pubd[order(nutrients_pubd$time),]
 
 ```
 ## Pivot data table to handle replicates
 
 ```{r}
 
-prev_nitrate <- previous_nutrients %>% 
+prev_nitrate <- nutrients_pubd %>% 
  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
  select(-silicate_a, -silicate_b, -silicate_c) %>%
  select(-phosphate_a, -phosphate_b, -phosphate_c)  %>% 
  pivot_longer(cols = c(nitrate_a, nitrate_b, nitrate_c), names_to = "replicate",  values_to = "nitrate")  
 prev_nitrate$replicate <- gsub("nitrate_", "", prev_nitrate$replicate)
   
-prev_ammonium <- previous_nutrients %>% 
+prev_ammonium <- nutrients_pubd %>% 
   select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
   select(-silicate_a, -silicate_b, -silicate_c) %>%
   select(-phosphate_a, -phosphate_b, -phosphate_c) %>% 
   pivot_longer(cols = c(ammonium_a, ammonium_b, ammonium_c), names_to = "replicate",  values_to = "ammonium") 
 prev_ammonium$replicate <- gsub("ammonium_", "", prev_ammonium$replicate)
   
-prev_silicate <- previous_nutrients %>%  
+prev_silicate <- nutrients_pubd %>%  
   select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
   select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
   select(-phosphate_a, -phosphate_b, -phosphate_c) %>%
   pivot_longer(cols = c(silicate_a, silicate_b, silicate_c), names_to = "replicate",  values_to = "silicate") 
 prev_silicate$replicate <- gsub("silicate_", "", prev_silicate$replicate)
   
-prev_phosphate <- previous_nutrients %>% 
+prev_phosphate <- nutrients_pubd %>% 
   select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
   select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
   select(-silicate_a, -silicate_b, -silicate_c) %>%
   pivot_longer(cols = c(phosphate_a, phosphate_b, phosphate_c), names_to = "replicate",  values_to = "phosphate")
 prev_phosphate$replicate <- gsub("phosphate_", "", prev_phosphate$replicate)
 
-prev_nutrients <- full_join(prev_nitrate, prev_ammonium, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
-prev_nutrients <- full_join(prev_nutrients, prev_silicate, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
-prev_nutrients <- full_join(prev_nutrients, prev_phosphate, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
+nutrients_pubd_long <- full_join(prev_nitrate, prev_ammonium, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
+nutrients_pubd_long <- full_join(nutrients_pubd_long, prev_silicate, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
+nutrients_pubd_long <- full_join(nutrients_pubd_long, prev_phosphate, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
 
 ```
 ## Compare previous nutrients data set to new data set
 ```{r}
 
-#plot(pressure)
+# rename nutrients columns in previously published data set
+nutrients_pubd_long <-  nutrients_pubd_long %>% 
+  rename(nitrate_old = nitrate) %>% 
+  rename(ammonium_old = ammonium) %>%
+  rename(silicate_old = silicate) %>%
+  rename(phosphate_old = phosphate) 
+
+# join old and new data sets
+nutrients_compare <- left_join(nutrients_long, nutrients_pubd_long, by = c("event_number", "latitude", "longitude", "depth", "replicate"))
+
+# compare nutrient values
+nutrients_compare <- nutrients_compare  %>% 
+  mutate(nitrate_diff = nitrate-nitrate_old)  %>% 
+  mutate(nitrate_diff = round(nitrate_diff, 3)) %>%
+  mutate(ammonium_diff = ammonium-ammonium_old)  %>% 
+  mutate(ammonium_diff = round(ammonium_diff, 3))  %>% 
+  mutate(phosphate_diff = phosphate-phosphate_old)  %>% 
+  mutate(phosphate_diff =round(phosphate_diff, 3))  %>% 
+  mutate(silicate_diff = silicate-silicate_old)  %>% 
+  mutate(silicate_diff =round(silicate_diff, 3))  
+
+# check for non-zero differences
+unique(nutrients_compare$nitrate_diff)
+unique(nutrients_compare$ammonium_diff)
+unique(nutrients_compare$phosphate_diff)
+unique(nutrients_compare$silicate_diff)
+
+# isolate non-zero differences in new dataframe
+nutrient_check <- nutrients_compare %>%
+  filter(nitrate_diff != 0 | ammonium_diff != 0 | phosphate_diff != 0 | silicate_diff != 0)  
+ # check these three records
 
 ```
 
