@@ -72,11 +72,23 @@ nutrients_input <-  nutrients_input %>%
 
 names(nutrients_input)<- tolower(names(nutrients_input))
 
- 
+# round nutrient concentration columns
+nutrients_input <- nutrients_input  %>% 
+  mutate(nitrate_a = round(nitrate_a, 3)) %>% 
+  mutate(nitrate_b = round(nitrate_b, 3)) %>% 
+  mutate(nitrate_c = round(nitrate_c, 3)) %>% 
+  mutate(ammonium_a = round(ammonium_a, 3)) %>% 
+  mutate(ammonium_b = round(ammonium_b, 3)) %>% 
+  mutate(ammonium_c = round(ammonium_c, 3)) %>% 
+  mutate(phosphate_a = round(phosphate_a, 3)) %>% 
+  mutate(phosphate_b = round(phosphate_b, 3)) %>% 
+  mutate(phosphate_c = round(phosphate_c, 3)) %>% 
+  mutate(silicate_a = round(silicate_a, 3)) %>% 
+  mutate(silicate_b = round(silicate_b, 3)) %>% 
+  mutate(silicate_c = round(silicate_c, 3))  
+
 # ensure rows are in time order
 nutrients_input <- nutrients_input[order(nutrients_input$datetime),]
-
-
 
 ```
 ## Pivot data table to handle replicates
@@ -188,8 +200,18 @@ nutrients_pubd_long <- full_join(prev_nitrate, prev_ammonium, by = c("event_numb
 nutrients_pubd_long <- full_join(nutrients_pubd_long, prev_silicate, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
 nutrients_pubd_long <- full_join(nutrients_pubd_long, prev_phosphate, by = c("event_number", "time", "latitude", "longitude", "depth", "replicate"))
 
+# convert NaN to NA
+nutrients_pubd_long <- nutrients_pubd_long %>% 
+  mutate(nitrate = replace(nitrate, nitrate == "NaN", NA)) %>% 
+  mutate(ammonium = replace(ammonium, ammonium == "NaN", NA)) %>% 
+  mutate(phosphate = replace(phosphate, phosphate == "NaN", NA)) %>% 
+  mutate(silicate = replace(silicate, silicate == "NaN", NA)) 
+
+
 ```
+
 ## Compare previous nutrients data set to new data set
+
 ```{r}
 
 # rename nutrients columns in previously published data set
@@ -200,18 +222,19 @@ nutrients_pubd_long <-  nutrients_pubd_long %>%
   rename(phosphate_old = phosphate) 
 
 # join old and new data sets
-nutrients_compare <- left_join(nutrients_long, nutrients_pubd_long, by = c("event_number", "latitude", "longitude", "depth", "replicate"))
+nutrients_compare_right <- right_join(nutrients_long, nutrients_pubd_long, by = c("event_number", "latitude", "longitude", "depth", "replicate"))
+# use this right join in order to work with only the rows that are included in the old data set
+
+#nutrients_compare_left <- left_join(nutrients_long, nutrients_pubd_long, by = c("event_number", "latitude", "longitude", "depth", "replicate"))
+#nutrients_compare_full <- full_join(nutrients_long, nutrients_pubd_long, by = c("event_number", "latitude", "longitude", "depth", "replicate"))
+#nutrients_compare_inner <- inner_join(nutrients_long, nutrients_pubd_long, by = c("event_number", "latitude", "longitude", "depth", "replicate"))
 
 # compare nutrient values
-nutrients_compare <- nutrients_compare  %>% 
+nutrients_compare <- nutrients_compare_right  %>% 
   mutate(nitrate_diff = nitrate-nitrate_old)  %>% 
-  mutate(nitrate_diff = round(nitrate_diff, 3)) %>%
   mutate(ammonium_diff = ammonium-ammonium_old)  %>% 
-  mutate(ammonium_diff = round(ammonium_diff, 3))  %>% 
   mutate(phosphate_diff = phosphate-phosphate_old)  %>% 
-  mutate(phosphate_diff =round(phosphate_diff, 3))  %>% 
-  mutate(silicate_diff = silicate-silicate_old)  %>% 
-  mutate(silicate_diff =round(silicate_diff, 3))  
+  mutate(silicate_diff = silicate-silicate_old) 
 
 # check for non-zero differences
 unique(nutrients_compare$nitrate_diff)
@@ -222,7 +245,40 @@ unique(nutrients_compare$silicate_diff)
 # isolate non-zero differences in new dataframe
 nutrient_check <- nutrients_compare %>%
   filter(nitrate_diff != 0 | ammonium_diff != 0 | phosphate_diff != 0 | silicate_diff != 0)  
- # check these three records
+print(paste0((nrow(nutrient_check)), " rows have unequal values"))
+
+# these identify the same values as above
+# nitrate_diff <- nutrients_compare %>%
+#   filter(nitrate != nitrate_old) 
+# amm_diff <- nutrients_compare %>%
+#   filter(ammonium != ammonium_old)
+# phos_diff <- nutrients_compare %>%
+#   filter(phosphate != phosphate_old)
+# sil_diff <- nutrients_compare %>%
+#   filter(silicate != silicate_old)
+
+# isolate rows with a value in one data set and NA in corresponding data set 
+# using only nitrate for this initial check 
+missing_nitrate_new <- nutrients_compare %>%
+  filter(is.na(nitrate) & (!is.na(nitrate_old))) 
+missing_nitrate_old <- nutrients_compare %>%
+  filter(!is.na(nitrate) & (is.na(nitrate_old))) 
+print(paste0((nrow(missing_nitrate_new)), " rows in new data file are missing nitrate values compared to old file"))
+print(paste0((nrow(missing_nitrate_old)), " rows in old data file are missing nitrate values compared to new file"))
+  
+# count rows with a value in one data set and NA in corresponding data set 
+# redundant # using only nitrate
+print(paste0("new nutrient file has ", sum(!is.na(nutrients_compare$nitrate)), " nitrate values corresponding to old data" ))
+print(paste0("new nutrient file has ", sum(is.na(nutrients_compare$nitrate)), " nitrate NAs corresponding to old data" ))
+print(paste0("old nutrient file has ", sum(!is.na(nutrients_compare$nitrate_old)), " nitrate values" ))
+print(paste0("old nutrient file has ", sum(is.na(nutrients_compare$nitrate_old)), " nitrate NAs" ))
+   
+# count_diff <- nutrients_compare %>%
+#   filter(!is.na(nitrate_diff))
+# count_old <- nutrients_pubd_long %>%
+#   filter(!is.na(nitrate_old))
+# count_NaN <- nutrients_pubd_long %>%
+#   filter(nitrate_old == "NaN")
 
 ```
 
