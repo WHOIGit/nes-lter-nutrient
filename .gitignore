@@ -112,3 +112,6 @@ venv.bak/
 
 # Provided Excel file
 MVCO_nut_copy01Nov2021.xls
+
+# History files
+.Rhistory
