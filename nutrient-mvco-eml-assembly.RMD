@@ -11,19 +11,19 @@ knitr::opts_chunk$set(echo = TRUE)
 # define source for functions developed for the EDI packaging workflow
 #source("edi-utilities.R")
 
-# define R packages to require 
-require(here)
-require(tidyverse)
-require(readxl)
-require(lubridate)
-require(devtools)
-require(EMLassemblyline)
-require(EML)
-require(maps)
-require(xml2)
-require(geosphere)
-require(httr)
-require(compareDF)
+# packages required 
+library(here)
+library(tidyverse)
+library(readxl)
+library(lubridate)
+library(devtools)
+library(EMLassemblyline)
+library(EML)
+library(maps)
+library(xml2)
+library(geosphere)
+library(httr)
+library(compareDF)
 
 #set path to root of project
 here("nes-lter-nutrient")
@@ -91,49 +91,14 @@ nutrients_input <- nutrients_input  %>%
 # ensure rows are in time order
 nutrients_input <- nutrients_input[order(nutrients_input$datetime),]
 
+# create dataframe for comparison to package version 1 data
+# remove event_number_niskin field from this dataframe only
 nutr_input_compare <- nutrients_input %>%
  select(-event_number_niskin)
 
 ```
-## Pivot data table to handle replicates
 
-```{r}
-
-nitrate <- nutrients_input %>% 
- select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
- select(-silicate_a, -silicate_b, -silicate_c) %>%
- select(-phosphate_a, -phosphate_b, -phosphate_c)  %>% 
- pivot_longer(cols = c(nitrate_a, nitrate_b, nitrate_c), names_to = "replicate",  values_to = "nitrate")  
-nitrate$replicate <- gsub("nitrate_", "", nitrate$replicate)
-  
-ammonium <- nutrients_input %>% 
-  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
-  select(-silicate_a, -silicate_b, -silicate_c) %>%
-  select(-phosphate_a, -phosphate_b, -phosphate_c) %>% 
-  pivot_longer(cols = c(ammonium_a, ammonium_b, ammonium_c), names_to = "replicate",  values_to = "ammonium") 
-ammonium$replicate <- gsub("ammonium_", "", ammonium$replicate)
-  
-silicate <- nutrients_input %>%  
-  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
-  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
-  select(-phosphate_a, -phosphate_b, -phosphate_c) %>%
-  pivot_longer(cols = c(silicate_a, silicate_b, silicate_c), names_to = "replicate",  values_to = "silicate") 
-silicate$replicate <- gsub("silicate_", "", silicate$replicate)
-  
-phosphate <- nutrients_input %>% 
-  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
-  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
-  select(-silicate_a, -silicate_b, -silicate_c) %>%
-  pivot_longer(cols = c(phosphate_a, phosphate_b, phosphate_c), names_to = "replicate",  values_to = "phosphate")
-phosphate$replicate <- gsub("phosphate_", "", phosphate$replicate)
-
-nutrients_long <- full_join(nitrate, ammonium, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
-nutrients_long <- full_join(nutrients_long, silicate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
-nutrients_long <- full_join(nutrients_long, phosphate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
-
-```
-
-## Read in previous MVCO nutrient package and compare to new data set
+## Read in previous MVCO nutrient package to compare to new data set
 
 ```{r}
 
@@ -189,6 +154,45 @@ create_output_table(comparison, output_type='xlsx', file_name='version_compariso
     # MVCO_382-MVCO_435, June 2017-November 2020
 
 ```
+
+## Pivot new data table to handle replicates
+
+```{r}
+
+nitrate <- nutrients_input %>% 
+ select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
+ select(-silicate_a, -silicate_b, -silicate_c) %>%
+ select(-phosphate_a, -phosphate_b, -phosphate_c)  %>% 
+ pivot_longer(cols = c(nitrate_a, nitrate_b, nitrate_c), names_to = "replicate",  values_to = "nitrate")  
+nitrate$replicate <- gsub("nitrate_", "", nitrate$replicate)
+  
+ammonium <- nutrients_input %>% 
+  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
+  select(-silicate_a, -silicate_b, -silicate_c) %>%
+  select(-phosphate_a, -phosphate_b, -phosphate_c) %>% 
+  pivot_longer(cols = c(ammonium_a, ammonium_b, ammonium_c), names_to = "replicate",  values_to = "ammonium") 
+ammonium$replicate <- gsub("ammonium_", "", ammonium$replicate)
+  
+silicate <- nutrients_input %>%  
+  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
+  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
+  select(-phosphate_a, -phosphate_b, -phosphate_c) %>%
+  pivot_longer(cols = c(silicate_a, silicate_b, silicate_c), names_to = "replicate",  values_to = "silicate") 
+silicate$replicate <- gsub("silicate_", "", silicate$replicate)
+  
+phosphate <- nutrients_input %>% 
+  select(-nitrate_a, -nitrate_b, -nitrate_c) %>%
+  select(-ammonium_a, -ammonium_b, -ammonium_c) %>%
+  select(-silicate_a, -silicate_b, -silicate_c) %>%
+  pivot_longer(cols = c(phosphate_a, phosphate_b, phosphate_c), names_to = "replicate",  values_to = "phosphate")
+phosphate$replicate <- gsub("phosphate_", "", phosphate$replicate)
+
+nutrients_long <- full_join(nitrate, ammonium, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
+nutrients_long <- full_join(nutrients_long, silicate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
+nutrients_long <- full_join(nutrients_long, phosphate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
+
+```
+
   
 ## Check range and check for outliers
 # similar to nutrient transect markdown
