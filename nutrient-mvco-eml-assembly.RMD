@@ -8,16 +8,21 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 
-# define source for functions developed for the EDI packaging workflow
-#source("edi-utilities.R")
+# load required packages 
 
-# packages required 
+# two of the required packages are installed from GitHub
+# uncomment these lines to update as needed
+# library(remotes)
+# remotes::install_github("EDIorg/EMLassemblyline")
+# remotes::install_github("WHOIGit/ediutilities")
+
+library(EMLassemblyline)
+library(ediutilities)
 library(here)
 library(tidyverse)
 library(readxl)
 library(lubridate)
 library(devtools)
-library(EMLassemblyline)
 library(EML)
 library(maps)
 library(xml2)
@@ -98,7 +103,7 @@ nutr_input_compare <- nutrients_input %>%
 
 ```
 
-## Read in previous MVCO nutrient package to compare to new data set
+## Read in version 1 MVCO nutrient package to compare to new data set
 
 ```{r}
 
@@ -107,12 +112,12 @@ url <- ('https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-nes.
 httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
 tf
 
-nutr_pubd <- read_csv(tf, TRUE) 
+nutr_pubd <- read_csv(tf, TRUE, show_col_types = FALSE) 
 
 
 ```
 
-# format previous dataframe
+# format version 1 dataframe
 
 ```{r}
 
