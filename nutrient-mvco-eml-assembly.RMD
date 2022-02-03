@@ -1,7 +1,7 @@
 ---
 title: "nutrient-mvco-eml-assembly"
 author: "Kate Morkeski"
-date: "11/12/2021"
+date: "2/3/2022"
 output: html_document
 ---
 
@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # uncomment these lines to update as needed
 # library(remotes)
 # remotes::install_github("EDIorg/EMLassemblyline")
-# remotes::install_github("WHOIGit/ediutilities")
+ remotes::install_github("WHOIGit/ediutilities")
 
 library(EMLassemblyline)
 library(ediutilities)
@@ -220,7 +220,7 @@ nut_diff_cols <- c("nitrate_diff", "phosphate_diff", "ammonium_diff", "silicate_
 nut_check_long <- nut_check %>%
   select(nitrate_diff, ammonium_diff, phosphate_diff, silicate_diff) %>%
   filter(nitrate_diff != 0) %>%
-  gather(nutrient_diffs, value, nut_diff_cols)
+  gather(nutrient_diffs, value, all_of(nut_diff_cols))
 
 # plot the differences and look for outliers
 ggplot(data = nut_check_long, aes(x = nutrient_diffs, y = value)) +
@@ -243,7 +243,7 @@ Make boxplots based on all nutrient values
 nut_cols <- c("nitrate", "phosphate", "ammonium", "silicate")
 # convert to long for ease of plotting
 nutrients_longer <- nutrients_long %>%
-    gather(nutrient, value, nut_cols, factor_key = TRUE)
+    gather(nutrient, value, all_of(nut_cols), factor_key = TRUE)
 
 # boxplot of the 4 nutrients in single panel
 ggplot(nutrients_longer, aes(x=nutrient, y=value))+geom_boxplot(outlier.size = 0.5)+theme_classic()
@@ -259,8 +259,6 @@ for (i in 1:length(nut_cols)) {
     theme_classic()
   print(p)
 }
-
-
 
 ```
 
@@ -292,18 +290,60 @@ print(paste(nrow(high_silicate), "silicate observations exceed max" ))
 # investigate high ammonium values
 hist(high_ammonium$ammonium)
 
-# could rbind all high nutrient data frames for better reproducibility # this way is simpler
+# could rbind all high nutrient data frames for better reproducibility # this way is simpler in this instance
 write.csv(high_ammonium, "high_ammonium.csv")
 
 ```
 
-
-## EML Assembly
+## Create package data file
 
 ```{r}
 
 # rename nitrate column to nitrate+nitrite
 nutrients_long <- rename(nutrients_long, nitrate_nitrite = nitrate)
 
+# write csv file for package
+write.csv(nutrients_long, "nes-lter-nutrient-mvco.csv", row.names = FALSE)
+
+```
+
+## EML Assembly
+
+
+Read data table
+
+```{r}
+
+data_table <- read.csv(here('nes-lter-nutrient-mvco.csv'))
+data_table$date = ymd_hms(data_table$datetime)
+
+```
+
+Read the Excel metadata template and generate text templates used by
+EMLassemblyline
+
+```{r}  
+
+excel_to_template(here('nutrient-mvco-info'), 'nes-lter-nutrient-mvco', rights='CCBY')  
+
+```
+Generate the package and insert the parent project node into the resulting EML
+
+```{r}
+
+pkg_id <- 'knb-lter-nes.1.3'  # previous version is knb-lter-nes.1.2 #this one knb-lter-nes.1.3?
+make_eml(here(),
+         dataset.title='Dissolved inorganic nutrients from NES-LTER cruises to the Marthas Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2006', # should this include a reference to MVCO?
+         data.table='nes-lter-nutrient-mvco.csv',
+         data.table.description='Dissolved inorganic nutrients from water column bottle samples taken on NES-LTER Transect cruises to the Marthas Vineyard Coastal Observatory',
+         data.table.name = 'nes-lter-nutrient-mvco',
+         temporal.coverage = temporal_coverage(data_table$date),
+         geographic.description = "NES-LTER Transect",  #should be MVCO?
+         geographic.coordinates = geographic_coordinates(data_table$latitude, data_table$longitude),
+         maintenance.description = "ongoing",
+         user.id = "NES",
+         user.domain = "LTER",
+         package.id = pkg_id)
+project_insert(pkg_id)
 
 ```

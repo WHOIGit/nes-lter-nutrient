@@ -1,0 +1,13 @@
+keyword	keywordThesaurus
+inorganic nutrients	LTER Core Research Areas
+chemistry	LTER Controlled Vocabulary
+oceanography	LTER Controlled Vocabulary
+seawater	LTER Controlled Vocabulary
+nutrients	LTER Controlled Vocabulary
+dissolved nutrients	LTER Controlled Vocabulary
+inorganic nutrients	LTER Controlled Vocabulary
+ammonium	LTER Controlled Vocabulary
+nitrate	LTER Controlled Vocabulary
+nitrite	LTER Controlled Vocabulary
+phosphate	LTER Controlled Vocabulary
+Silicate	Global Change Master Directory (GCMD)
