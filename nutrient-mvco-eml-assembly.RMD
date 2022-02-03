@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 # uncomment these lines to update as needed
 # library(remotes)
 # remotes::install_github("EDIorg/EMLassemblyline")
- remotes::install_github("WHOIGit/ediutilities")
+# remotes::install_github("WHOIGit/ediutilities")
 
 library(EMLassemblyline)
 library(ediutilities)
@@ -197,8 +197,15 @@ nutrients_long <- full_join(nutrients_long, silicate, by = c("event_number", "ev
 nutrients_long <- full_join(nutrients_long, phosphate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
 
 ```
+# QA: transformation check
 
-# QC: Nutrient Outlier Check
+```{r}
+
+
+```
+
+
+# QA: Nutrient Outlier Check
 
 # Check if there are severe differences in nutrient values across replicates. Plot these differences to perform a visual check.
 
@@ -331,9 +338,9 @@ Generate the package and insert the parent project node into the resulting EML
 
 ```{r}
 
-pkg_id <- 'knb-lter-nes.1.3'  # previous version is knb-lter-nes.1.2 #this one knb-lter-nes.1.3?
+pkg_id <- 'knb-lter-nes.1.3'  
 make_eml(here(),
-         dataset.title='Dissolved inorganic nutrients from NES-LTER cruises to the Marthas Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2006', # should this include a reference to MVCO?
+         dataset.title='Dissolved inorganic nutrients from NES-LTER cruises to the Marthas Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2006', 
          data.table='nes-lter-nutrient-mvco.csv',
          data.table.description='Dissolved inorganic nutrients from water column bottle samples taken on NES-LTER Transect cruises to the Marthas Vineyard Coastal Observatory',
          data.table.name = 'nes-lter-nutrient-mvco',
