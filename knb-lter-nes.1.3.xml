@@ -28,14 +28,34 @@
         <surName>Crockford</surName>
       </individualName>
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
+      <electronicMailAddress>ecrockford@whoi.edu</electronicMailAddress>
       <role>technician</role>
     </associatedParty>
-    <pubDate>2022-02-03</pubDate>
+    <associatedParty>
+      <individualName>
+        <givenName>Emily</givenName>
+        <surName>Peacock</surName>
+      </individualName>
+      <organizationName>Northeast U.S. Shelf LTER</organizationName>
+      <electronicMailAddress>epeacock@whoi.edu</electronicMailAddress>
+      <role>technician</role>
+    </associatedParty>
+    <associatedParty>
+      <individualName>
+        <givenName>Kate</givenName>
+        <surName>Morkeski</surName>
+      </individualName>
+      <organizationName>Northeast U.S. Shelf LTER</organizationName>
+      <electronicMailAddress>kmorkeski@whoi.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
+      <role>metadataProvider</role>
+    </associatedParty>
+    <pubDate>2022-02-10</pubDate>
     <abstract>
       <para>Dissolved inorganic nutrients are measured from water column bottle samples taken on NES-LTER cruises (ongoing since 2006) and include nitrate + nitrite, ammonium, silicate, and phosphate. For years 2006 - 2017 prior to the start of the NES-LTER project, sampling was usually in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. Each sample may have up to 3 replicates, indicated by a, b, and c in the column headers of the data table. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in µmol/L).</para>
     </abstract>
     <keywordSet>
-      <keyword>inorganic nutrients</keyword>
+      <keyword>inorganic matter</keyword>
       <keywordThesaurus>LTER Core Research Areas</keywordThesaurus>
     </keywordSet>
     <keywordSet>
@@ -211,7 +231,7 @@ All Below Detection Limit values are set to zero. The detection limit is differe
       <physical>
         <objectName>nes-lter-nutrient-mvco.csv</objectName>
         <size unit="bytes">298791</size>
-        <authentication method="MD5">8574f11de91741afc47644d11a22b8c1</authentication>
+        <authentication method="MD5">e1b85c5677f8b17cd41cb7741747d7d6</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -244,13 +264,13 @@ All Below Detection Limit values are set to zero. The detection limit is differe
         </attribute>
         <attribute>
           <attributeName>event_number_niskin</attributeName>
-          <attributeDefinition>Code in general identifying event number and Niskin for day cruises to MVCO.</attributeDefinition>
+          <attributeDefinition>Code in general identifying event number and Niskin (and collaborating institution) for day cruises to MVCO.</attributeDefinition>
           <storageType>string</storageType>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Code in general identifying event number and Niskin for day cruises to MVCO.</definition>
+                  <definition>Code in general identifying event number and Niskin (and collaborating institution) for day cruises to MVCO.</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -262,7 +282,7 @@ All Below Detection Limit values are set to zero. The detection limit is differe
         </attribute>
         <attribute>
           <attributeName>datetime</attributeName>
-          <attributeDefinition>Date and time in UTC when rosette bottle closed or bucket filled</attributeDefinition>
+          <attributeDefinition>Date and time in UTC when cast started or bucket filled</attributeDefinition>
           <storageType>date</storageType>
           <measurementScale>
             <dateTime>
@@ -277,7 +297,7 @@ All Below Detection Limit values are set to zero. The detection limit is differe
         </attribute>
         <attribute>
           <attributeName>latitude</attributeName>
-          <attributeDefinition>Ship's latitude when rosette bottle closed or bucket filled</attributeDefinition>
+          <attributeDefinition>Ship's latitude when cast started or bucket filled</attributeDefinition>
           <storageType>float</storageType>
           <measurementScale>
             <ratio>
@@ -300,7 +320,7 @@ All Below Detection Limit values are set to zero. The detection limit is differe
         </attribute>
         <attribute>
           <attributeName>longitude</attributeName>
-          <attributeDefinition>Ship's longitude when rosette bottle closed or bucket filled</attributeDefinition>
+          <attributeDefinition>Ship's longitude when cast started or bucket filled</attributeDefinition>
           <storageType>float</storageType>
           <measurementScale>
             <ratio>
@@ -387,7 +407,7 @@ All Below Detection Limit values are set to zero. The detection limit is differe
         </attribute>
         <attribute>
           <attributeName>ammonium</attributeName>
-          <attributeDefinition>Ammonium concentration in the water column</attributeDefinition>
+          <attributeDefinition>Ammonium concentration in the water column URI http://vocab.nerc.ac.uk/collection/P02/current/AMON/</attributeDefinition>
           <storageType>float</storageType>
           <measurementScale>
             <ratio>
@@ -399,29 +419,6 @@ All Below Detection Limit values are set to zero. The detection limit is differe
                 <bounds>
                   <minimum exclusive="false">0</minimum>
                   <maximum exclusive="false">14.382</maximum>
-                </bounds>
-              </numericDomain>
-            </ratio>
-          </measurementScale>
-          <missingValueCode>
-            <code>NaN</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
-        </attribute>
-        <attribute>
-          <attributeName>silicate</attributeName>
-          <attributeDefinition>Silicate concentration in the water column. URI http://vocab.nerc.ac.uk/collection/P02/current/SLCA/</attributeDefinition>
-          <storageType>float</storageType>
-          <measurementScale>
-            <ratio>
-              <unit>
-                <standardUnit>micromolePerLiter</standardUnit>
-              </unit>
-              <numericDomain>
-                <numberType>real</numberType>
-                <bounds>
-                  <minimum exclusive="false">0</minimum>
-                  <maximum exclusive="false">46.314</maximum>
                 </bounds>
               </numericDomain>
             </ratio>
@@ -445,6 +442,29 @@ All Below Detection Limit values are set to zero. The detection limit is differe
                 <bounds>
                   <minimum exclusive="false">0</minimum>
                   <maximum exclusive="false">2.59</maximum>
+                </bounds>
+              </numericDomain>
+            </ratio>
+          </measurementScale>
+          <missingValueCode>
+            <code>NaN</code>
+            <codeExplanation>Missing value</codeExplanation>
+          </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>silicate</attributeName>
+          <attributeDefinition>Silicate concentration in the water column. URI http://vocab.nerc.ac.uk/collection/P02/current/SLCA/</attributeDefinition>
+          <storageType>float</storageType>
+          <measurementScale>
+            <ratio>
+              <unit>
+                <standardUnit>micromolePerLiter</standardUnit>
+              </unit>
+              <numericDomain>
+                <numberType>real</numberType>
+                <bounds>
+                  <minimum exclusive="false">0</minimum>
+                  <maximum exclusive="false">46.314</maximum>
                 </bounds>
               </numericDomain>
             </ratio>

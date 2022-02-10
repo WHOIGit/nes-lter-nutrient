@@ -200,7 +200,9 @@ nutrients_long <- full_join(nutrients_long, phosphate, by = c("event_number", "e
 # QA: transformation check
 
 ```{r}
+#TODO
 
+#count and sum 
 
 ```
 
@@ -307,7 +309,8 @@ write.csv(high_ammonium, "high_ammonium.csv")
 ```{r}
 
 # rename nitrate column to nitrate+nitrite
-nutrients_long <- rename(nutrients_long, nitrate_nitrite = nitrate)
+nutrients_long <- rename(nutrients_long, nitrate_nitrite = nitrate) %>%
+  relocate(phosphate, .before = silicate)
 
 # write csv file for package
 write.csv(nutrients_long, "nes-lter-nutrient-mvco.csv", row.names = FALSE)
