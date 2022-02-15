@@ -197,15 +197,83 @@ nutrients_long <- full_join(nutrients_long, silicate, by = c("event_number", "ev
 nutrients_long <- full_join(nutrients_long, phosphate, by = c("event_number", "event_number_niskin", "datetime", "latitude", "longitude", "depth", "replicate"))
 
 ```
+
 # QA: transformation check
 
 ```{r}
-#TODO
 
-#count and sum 
+# check that number of samples and sums of values in transformed data match input data
+
+nutrient <- c("nitrate", "ammonium", "phosphate", "silicate")
+check <- data.frame(nutrient)
+check$input_n <- NA_integer_
+check$input_sum <- NA_integer_
+check$long_n <- NA_integer_
+check$long_sum <- NA_integer_
+
+
+# count non-NA values in input data and sum all values of each nutrient in input data
+for (i in 1:nrow(check)){
+  
+  nutrient <- check$nutrient[i]
+ 
+  a <- select(nutrients_input, paste0(nutrient,"_a"))
+  b <- select(nutrients_input, paste0(nutrient,"_b"))
+  c <- select(nutrients_input, paste0(nutrient,"_c"))
+  
+  check$input_n[i] <- sum(!is.na(a)) + sum(!is.na(b)) + sum(!is.na(c))
+  check$input_sum[i] <- sum(a, na.rm = TRUE) + sum(b, na.rm = TRUE) + sum(c, na.rm = TRUE)
+  
+}
+
+# count non-NA values in transformed data and sum all values of each nutrient in transformed data
+for (i in 1:nrow(check)){
+  
+  nutrient <- check$nutrient[i]
+ 
+  check$long_n[i] <- sum(!is.na(select(nutrients_long, nutrient)))
+  check$long_sum[i] <- sum(select(nutrients_long, nutrient), na.rm = TRUE)
+  
+}
+
+check$diff_n <- check$input_n - check$long_n 
+check$diff_sum <- check$input_sum - check$long_sum
+
 
 ```
+## QA: Determine if any nutrient values exceed expectations
 
+According to a global range check: nitrate less than 30 umol/l and ammonium less than 5 umol/l based on [Rees et al. 2006](https://doi.org/10.1016/j.dsr2.2006.05.008), phosphate less than 3 (no great reference but this appears to be upper for Atlantic), silicate less than 60 (Elements of Physical Oceanography chapter on marine silica cycle, for deep Atlantic, this is probably too high).
+
+```{r}
+
+summary(nutrients_long) # visual min max for all columns
+# visually check the printed nutrient data for maxima exceeding expected thresholds:
+# nitrate > 30 
+# ammonium > 5
+# phosphate > 3
+# silicate > 60
+
+# filter for values exceeding the thresholds
+high_nitrate <- nutrients_long %>%  filter(nitrate > 30)
+high_ammonium <- nutrients_long %>% filter(ammonium > 5)
+high_phosphate <- nutrients_long %>% filter(phosphate > 3)
+high_silicate <- nutrients_long %>% filter(silicate > 60)
+
+# check console output for summary and alerts
+print(paste(nrow(high_nitrate), "nitrate observations exceed max" ))
+print(paste(nrow(high_ammonium), "ammonium observations exceed max" ))
+print(paste(nrow(high_phosphate), "phosphate observations exceed max" ))
+print(paste(nrow(high_silicate), "silicate observations exceed max" ))
+ 
+# investigate high ammonium values
+hist(high_ammonium$ammonium)
+
+# could rbind all high nutrient data frames for better reproducibility # this way is simpler in this instance
+write.csv(high_ammonium, "high_ammonium.csv")
+# only one of these values is new to version 3
+
+```
 
 # QA: Nutrient Outlier Check
 
@@ -270,39 +338,29 @@ for (i in 1:length(nut_cols)) {
 }
 
 ```
-
-## QA: Determine if any nutrient values exceed expectations
-
-According to a global range check: nitrate less than 30 umol/l and ammonium less than 5 umol/l based on [Rees et al. 2006](https://doi.org/10.1016/j.dsr2.2006.05.008), phosphate less than 3 (no great reference but this appears to be upper for Atlantic), silicate less than 60 (Elements of Physical Oceanography chapter on marine silica cycle, for deep Atlantic, this is probably too high).
+## QA map check of sampling locations
 
 ```{r}
 
-summary(nutrients_long) # visual min max for all columns
-# visually check the printed nutrient data for maxima exceeding excpected thresholds:
-# nitrate > 30 
-# ammonium > 5
-# phosphate > 3
-# silicate > 60
+# plot location of all samples
+map_locs(nutrients_long, colorvar = "depth", region = "transect")
 
-# filter for values exceeding the thresholds
-high_nitrate <- nutrients_long %>%  filter(nitrate > 30)
-high_ammonium <- nutrients_long %>% filter(ammonium > 5)
-high_phosphate <- nutrients_long %>% filter(phosphate > 3)
-high_silicate <- nutrients_long %>% filter(silicate > 60)
+# investigate distribution of low-latitude samples
+hist(nutrients_long$latitude, plot = FALSE)
 
-# check console output for summary and alerts
-print(paste(nrow(high_nitrate), "nitrate observations exceed max" ))
-print(paste(nrow(high_ammonium), "ammonium observations exceed max" ))
-print(paste(nrow(high_phosphate), "phosphate observations exceed max" ))
-print(paste(nrow(high_silicate), "silicate observations exceed max" ))
- 
-# investigate high ammonium values
-hist(high_ammonium$ammonium)
+# filter samples into northern and southern sections using cutoff of 41.30 deg N suggested by histogram data
+southern_samples <- nutrients_long %>% filter(latitude < 41.30 )
+northern_samples <- nutrients_long %>% filter(latitude > 41.30 )
+# southern samples are from 2007-2009 so already in package version 1
 
-# could rbind all high nutrient data frames for better reproducibility # this way is simpler in this instance
-write.csv(high_ammonium, "high_ammonium.csv")
+# plot sections 
+map_locs(southern_samples, colorvar = "depth", region = "transect")
+map_locs(northern_samples, colorvar = "depth", region = "transect")
+
 
 ```
+
+
 
 ## Create package data file
 
