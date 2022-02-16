@@ -241,6 +241,26 @@ check$diff_sum <- check$input_sum - check$long_sum
 
 
 ```
+
+```{r}
+
+Tioga_ID <- read_csv('MVCO_Tioga_cruise_list_2017-2021.csv', col_select = 1:4, show_col_types = FALSE) 
+
+# join Tioga cruise number to MV_event 
+
+Tioga_ID$event_number <- paste0("MVCO_", Tioga_ID$MV_Event)
+
+nutrients_long <- left_join(nutrients_long, Tioga_ID, by = "event_number")
+
+nutrients_long <- nutrients_long %>%
+  rename(ship = Ship) %>%
+  rename(cruise_ID = 'Cruise ID') %>%
+  select(-Date, -MV_Event)  %>%
+  relocate(ship, .before = datetime) %>%
+  relocate(cruise_ID, .before = datetime)
+ 
+```
+
 ## QA: Determine if any nutrient values exceed expectations
 
 According to a global range check: nitrate less than 30 umol/l and ammonium less than 5 umol/l based on [Rees et al. 2006](https://doi.org/10.1016/j.dsr2.2006.05.008), phosphate less than 3 (no great reference but this appears to be upper for Atlantic), silicate less than 60 (Elements of Physical Oceanography chapter on marine silica cycle, for deep Atlantic, this is probably too high).

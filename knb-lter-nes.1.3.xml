@@ -50,7 +50,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>metadataProvider</role>
     </associatedParty>
-    <pubDate>2022-02-15</pubDate>
+    <pubDate>2022-02-16</pubDate>
     <abstract>
       <para>Dissolved inorganic nutrients are measured from water column bottle samples taken on NES-LTER cruises (ongoing since 2006) and include nitrate + nitrite, ammonium, silicate, and phosphate. For years 2006 - 2017 prior to the start of the NES-LTER project, sampling was usually in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. Each sample may have up to 3 replicates, indicated by a, b, and c in the column headers of the data table. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in µmol/L).</para>
     </abstract>
@@ -231,8 +231,8 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
       <entityDescription>Dissolved inorganic nutrients from water column bottle samples taken on NES-LTER Transect cruises to the Marthas Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-nutrient-mvco.csv</objectName>
-        <size unit="bytes">298791</size>
-        <authentication method="MD5">e1b85c5677f8b17cd41cb7741747d7d6</authentication>
+        <size unit="bytes">322903</size>
+        <authentication method="MD5">482b1409579f0d6006605cdd1b2c7a26</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -280,6 +280,34 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
+        </attribute>
+        <attribute>
+          <attributeName>ship</attributeName>
+          <attributeDefinition>Name of vessel from which samples were collected</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Name of vessel from which samples were collected</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
+        </attribute>
+        <attribute>
+          <attributeName>cruise_ID</attributeName>
+          <attributeDefinition>Cruise identifer for the R/V Tioga</attributeDefinition>
+          <storageType>string</storageType>
+          <measurementScale>
+            <nominal>
+              <nonNumericDomain>
+                <textDomain>
+                  <definition>Cruise identifer for the R/V Tioga</definition>
+                </textDomain>
+              </nonNumericDomain>
+            </nominal>
+          </measurementScale>
         </attribute>
         <attribute>
           <attributeName>datetime</attributeName>
