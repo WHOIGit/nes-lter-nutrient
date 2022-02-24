@@ -40,7 +40,6 @@ here("nes-lter-nutrient")
 
 nutrients_input <- read_excel('MVCO_nut_copy01Nov2021.xls') 
 
-
 ```
 ## Update column names
 
@@ -78,8 +77,10 @@ nutrients_input <-  nutrients_input %>%
 
 names(nutrients_input)<- tolower(names(nutrients_input))
 
-# round nutrient concentration columns
+# round lat/long and nutrient concentration columns
 nutrients_input <- nutrients_input  %>% 
+  mutate(latitude = round(latitude, 4)) %>% 
+  mutate(longitude = round(longitude, 4)) %>% 
   mutate(nitrate_a = round(nitrate_a, 3)) %>% 
   mutate(nitrate_b = round(nitrate_b, 3)) %>% 
   mutate(nitrate_c = round(nitrate_c, 3)) %>% 
@@ -113,7 +114,6 @@ httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
 tf
 
 nutr_pubd <- read_csv(tf, TRUE, show_col_types = FALSE) 
-
 
 ```
 
@@ -239,7 +239,6 @@ for (i in 1:nrow(check)){
 check$diff_n <- check$input_n - check$long_n 
 check$diff_sum <- check$input_sum - check$long_sum
 
-
 ```
 
 ```{r}
@@ -294,42 +293,6 @@ write.csv(high_ammonium, "high_ammonium.csv")
 # only one of these values is new to version 3
 
 ```
-
-# QA: Nutrient Outlier Check
-
-# Check if there are severe differences in nutrient values across replicates. Plot these differences to perform a visual check.
-
-# this is based on nutrient transect check that is by cruise/cast/niskin. Is it useful here? 
-
-```{r}
-
-# calculate the difference between the replicates across all nutrients
-nut_check <- nutrients_long %>%
-  group_by(event_number_niskin) %>%
-    mutate(nitrate_diff = abs(nitrate - lead(nitrate)),
-          ammonium_diff = abs(ammonium - lead(ammonium)),
-          phosphate_diff = abs(phosphate - lead(phosphate)),
-          silicate_diff = abs(silicate - lead(silicate))) 
-
-# define the nutrient outlier columns to gather on
-nut_diff_cols <- c("nitrate_diff", "phosphate_diff", "ammonium_diff", "silicate_diff")
-# convert to long for ease of plotting
-nut_check_long <- nut_check %>%
-  select(nitrate_diff, ammonium_diff, phosphate_diff, silicate_diff) %>%
-  filter(nitrate_diff != 0) %>%
-  gather(nutrient_diffs, value, all_of(nut_diff_cols))
-
-# plot the differences and look for outliers
-ggplot(data = nut_check_long, aes(x = nutrient_diffs, y = value)) +
-    geom_boxplot(outlier.size = 0.5) +
-    ylab(paste0("Concentration (µmol/L)")) +
-    theme_classic()
-
-# why rearranged to alphabetical order? 
-
-```
-
-
 ## QA: Plot nutrients as a check
 
 Make boxplots based on all nutrient values
@@ -358,6 +321,37 @@ for (i in 1:length(nut_cols)) {
 }
 
 ```
+
+# QA: Nutrient Outlier Check
+
+# Check if there are severe differences in nutrient values across replicates. Plot these differences to perform a visual check.
+
+```{r}
+
+# calculate the difference between the replicates across all nutrients
+nut_check <- nutrients_long %>%
+  group_by(event_number_niskin) %>%
+    mutate(nitrate_diff = abs(nitrate - lead(nitrate)),
+          ammonium_diff = abs(ammonium - lead(ammonium)),
+          phosphate_diff = abs(phosphate - lead(phosphate)),
+          silicate_diff = abs(silicate - lead(silicate))) 
+
+# define the nutrient outlier columns to gather on
+nut_diff_cols <- c("nitrate_diff", "phosphate_diff", "ammonium_diff", "silicate_diff")
+# convert to long for ease of plotting
+nut_check_long <- nut_check %>%
+  select(nitrate_diff, ammonium_diff, phosphate_diff, silicate_diff) %>%
+  filter(nitrate_diff != 0) %>%
+  gather(nutrient_diffs, value, all_of(nut_diff_cols))
+
+# plot the differences and look for outliers
+ggplot(data = nut_check_long, aes(x = nutrient_diffs, y = value)) +
+    geom_boxplot(outlier.size = 0.5) +
+    ylab(paste0("Concentration (µmol/L)")) +
+    theme_classic()
+
+```
+
 ## QA map check of sampling locations
 
 ```{r}
@@ -374,8 +368,8 @@ northern_samples <- nutrients_long %>% filter(latitude > 41.30 )
 # southern samples are from 2007-2009 so already in package version 1
 
 # plot sections 
-map_locs(southern_samples, colorvar = "depth", region = "transect")
-map_locs(northern_samples, colorvar = "depth", region = "transect")
+#map_locs(southern_samples, colorvar = "depth", region = "transect")
+#map_locs(northern_samples, colorvar = "depth", region = "transect")
 
 
 ```
@@ -397,12 +391,13 @@ write.csv(nutrients_long, "nes-lter-nutrient-mvco.csv", row.names = FALSE)
 
 ## EML Assembly
 
-
 Read data table
 
 ```{r}
 
 data_table <- read.csv(here('nes-lter-nutrient-mvco.csv'))
+
+# identify date column for ediutilities package to generate temporal coverage
 data_table$date = ymd_hms(data_table$datetime)
 
 ```
@@ -421,12 +416,12 @@ Generate the package and insert the parent project node into the resulting EML
 
 pkg_id <- 'knb-lter-nes.1.3'  
 make_eml(here(),
-         dataset.title='Dissolved inorganic nutrients from NES-LTER cruises to the Marthas Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2006', 
+         dataset.title='Dissolved inorganic nutrients from NES-LTER cruises to the Marthas Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2003', 
          data.table='nes-lter-nutrient-mvco.csv',
-         data.table.description='Dissolved inorganic nutrients from water column bottle samples taken on NES-LTER Transect cruises to the Marthas Vineyard Coastal Observatory',
+         data.table.description='Dissolved inorganic nutrients from water column bottle samples taken near the Marthas Vineyard Coastal Observatory',
          data.table.name = 'nes-lter-nutrient-mvco',
          temporal.coverage = temporal_coverage(data_table$date),
-         geographic.description = "NES-LTER Transect",  #should be MVCO?
+         geographic.description = "Marthas Vineyard Coastal Observatory",
          geographic.coordinates = geographic_coordinates(data_table$latitude, data_table$longitude),
          maintenance.description = "ongoing",
          user.id = "NES",

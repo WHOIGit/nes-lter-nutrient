@@ -11,7 +11,7 @@
     </allow>
   </access>
   <dataset>
-    <title>Dissolved inorganic nutrients from NES-LTER cruises to the Marthas Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2006</title>
+    <title>Dissolved inorganic nutrients from NES-LTER cruises to the Marthas Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2003</title>
     <creator>
       <individualName>
         <givenName>Heidi</givenName>
@@ -22,24 +22,22 @@
       <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-4591-2842</userId>
     </creator>
-    <associatedParty>
+    <creator>
       <individualName>
         <givenName>E. Taylor</givenName>
         <surName>Crockford</surName>
       </individualName>
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <electronicMailAddress>ecrockford@whoi.edu</electronicMailAddress>
-      <role>technician</role>
-    </associatedParty>
-    <associatedParty>
+    </creator>
+    <creator>
       <individualName>
         <givenName>Emily</givenName>
         <surName>Peacock</surName>
       </individualName>
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <electronicMailAddress>epeacock@whoi.edu</electronicMailAddress>
-      <role>technician</role>
-    </associatedParty>
+    </creator>
     <associatedParty>
       <individualName>
         <givenName>Kate</givenName>
@@ -48,11 +46,11 @@
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <electronicMailAddress>kmorkeski@whoi.edu</electronicMailAddress>
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
-      <role>metadataProvider</role>
+      <role>Metadata Provider</role>
     </associatedParty>
-    <pubDate>2022-02-16</pubDate>
+    <pubDate>2022-02-24</pubDate>
     <abstract>
-      <para>Dissolved inorganic nutrients are measured from water column bottle samples taken on NES-LTER cruises (ongoing since 2006) and include nitrate + nitrite, ammonium, silicate, and phosphate. For years 2006 - 2017 prior to the start of the NES-LTER project, sampling was usually in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. Each sample may have up to 3 replicates, indicated by a, b, and c in the column headers of the data table. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in µmol/L).</para>
+      <para>Dissolved inorganic nutrients including include nitrate + nitrite, ammonium, silicate, and phosphate are measured from water column bottle and bucket samples taken on NES-LTER day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in micromole per liter). Each sample may have up to 3 replicates.</para>
     </abstract>
     <keywordSet>
       <keyword>inorganic matter</keyword>
@@ -81,7 +79,7 @@
     </intellectualRights>
     <coverage>
       <geographicCoverage>
-        <geographicDescription>NES-LTER Transect</geographicDescription>
+        <geographicDescription>Marthas Vineyard Coastal Observatory</geographicDescription>
         <boundingCoordinates>
           <westBoundingCoordinate>-70.6839</westBoundingCoordinate>
           <eastBoundingCoordinate>-70.4151</eastBoundingCoordinate>
@@ -228,11 +226,11 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
     </project>
     <dataTable>
       <entityName>nes-lter-nutrient-mvco</entityName>
-      <entityDescription>Dissolved inorganic nutrients from water column bottle samples taken on NES-LTER Transect cruises to the Marthas Vineyard Coastal Observatory</entityDescription>
+      <entityDescription>Dissolved inorganic nutrients from water column bottle samples taken near the Marthas Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-nutrient-mvco.csv</objectName>
-        <size unit="bytes">322903</size>
-        <authentication method="MD5">482b1409579f0d6006605cdd1b2c7a26</authentication>
+        <size unit="bytes">321376</size>
+        <authentication method="MD5">83b50f204ad3275c2ea01c7682a2ce93</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -259,7 +257,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </nominal>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -277,7 +275,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </nominal>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -320,7 +318,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </dateTime>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -343,7 +341,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -366,7 +364,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -389,7 +387,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -407,7 +405,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </nominal>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -430,7 +428,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -453,7 +451,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -476,7 +474,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -499,7 +497,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NaN</code>
+            <code>NA</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
