@@ -8,9 +8,10 @@ Samples were collected from the water column at multiple depths using Niskin bot
 
 # Nutrient Filtering Protocol
 
-Prior to 2018, and for bucket samples: Wearing nitrile gloves, collect water from the niskin or bucket with a clean bottle that is rinsed 3 times with the sample water. Rinse the full length of a B-D 60 ml LUER-LOKTM syringe with a small volume of sample water 3 times. Completely fill syringe with sample water and force 60 ml through a EMD Millipore sterile Sterivex 0.22 um filter. Then refill the syringe.
+Prior to 2018, and for bucket samples: Wearing nitrile gloves, collect water from the Niskin or bucket with a clean bottle that is rinsed 3 times with the sample water. Rinse the full length of a B-D 60 ml LUER-LOKTM syringe with a small volume of sample water 3 times. Completely fill syringe with sample water and force 60 ml through a EMD Millipore sterile Sterivex 0.22 um filter. Then refill the syringe.
 
-2018 to present: Wearing nitrile gloves, connect AcroPak 200 Capsule with Super Membrane 0.2 um filter with barb and tubing to niskin spigot and fill with water. Rinse filter with 3 times the volume of the filter. Then refill the filter.
+2018 to present: Wearing nitrile gloves, connect AcroPak 200 Capsule with Super Membrane 0.2 um filter with barb and tubing to Niskin spigot and fill with water. Rinse filter with 3 times the volume of the filter. Then refill the filter.
+
 All samples: Then, without touching filter to sample vial (acid-washed scintillation vial 20 ml), rinse sample vial with 5 ml of filtered sample water 3 times. For each rinse, replace the cap and shake vigorously. Filter 17 ml of sample directly into the sample vial and replace the cap and proceed to the next sample. Store samples in a -20 deg C freezer and keep frozen until analysis. If applicable, flush AcroPak filter with milli-Q water and refrigerate for using on next cast (AcroPak filter may process up to 20 liters).
 
 # WHOI Nutrient Facility Sample Analysis

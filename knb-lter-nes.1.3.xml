@@ -48,7 +48,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>Metadata Provider</role>
     </associatedParty>
-    <pubDate>2022-05-13</pubDate>
+    <pubDate>2022-06-03</pubDate>
     <abstract>
       <para>Dissolved inorganic nutrients including nitrate + nitrite, ammonium, silicate, and phosphate are measured from water column bottle and bucket samples taken on NES-LTER day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in micromole per liter). Each sample may have up to 3 replicates.</para>
     </abstract>
@@ -114,9 +114,9 @@
           <para># CTD Rosette Bottle and Bucket Sampling  </para>
           <para>Samples were collected from the water column at multiple depths using Niskin bottles on a CTD rosette system. Some samples were collected at the surface with a bucket. In the event_number_niskin field of the data table, MVCO event number is combined with a suffix indicating a bucket sample (_00), Niskin bottle number (e.g. _01), or collaborating institution (_UNH). The depth for bucket samples is 0 m; some surface Niskin samples also have depth recorded as 0 m. </para>
           <para># Nutrient Filtering Protocol</para>
-          <para>Prior to 2018, and for bucket samples: Wearing nitrile gloves, collect water from the niskin or bucket with a clean bottle that is rinsed 3 times with the sample water. Rinse the full length of a B-D 60 ml LUER-LOKTM syringe with a small volume of sample water 3 times. Completely fill syringe with sample water and force 60 ml through a EMD Millipore sterile Sterivex 0.22 um filter. Then refill the syringe.</para>
-          <para>2018 to present: Wearing nitrile gloves, connect AcroPak 200 Capsule with Super Membrane 0.2 um filter with barb and tubing to niskin spigot and fill with water. Rinse filter with 3 times the volume of the filter. Then refill the filter.&#13;
-All samples: Then, without touching filter to sample vial (acid-washed scintillation vial 20 ml), rinse sample vial with 5 ml of filtered sample water 3 times. For each rinse, replace the cap and shake vigorously. Filter 17 ml of sample directly into the sample vial and replace the cap and proceed to the next sample. Store samples in a -20 deg C freezer and keep frozen until analysis. If applicable, flush AcroPak filter with milli-Q water and refrigerate for using on next cast (AcroPak filter may process up to 20 liters).</para>
+          <para>Prior to 2018, and for bucket samples: Wearing nitrile gloves, collect water from the Niskin or bucket with a clean bottle that is rinsed 3 times with the sample water. Rinse the full length of a B-D 60 ml LUER-LOKTM syringe with a small volume of sample water 3 times. Completely fill syringe with sample water and force 60 ml through a EMD Millipore sterile Sterivex 0.22 um filter. Then refill the syringe.</para>
+          <para>2018 to present: Wearing nitrile gloves, connect AcroPak 200 Capsule with Super Membrane 0.2 um filter with barb and tubing to Niskin spigot and fill with water. Rinse filter with 3 times the volume of the filter. Then refill the filter.</para>
+          <para>All samples: Then, without touching filter to sample vial (acid-washed scintillation vial 20 ml), rinse sample vial with 5 ml of filtered sample water 3 times. For each rinse, replace the cap and shake vigorously. Filter 17 ml of sample directly into the sample vial and replace the cap and proceed to the next sample. Store samples in a -20 deg C freezer and keep frozen until analysis. If applicable, flush AcroPak filter with milli-Q water and refrigerate for using on next cast (AcroPak filter may process up to 20 liters).</para>
           <para># WHOI Nutrient Facility Sample Analysis</para>
           <para>Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/) which operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control. Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good. If the samples fall outside of the duplicate or spike addition quality control they are rerun until they fall within quality control parameters. Precision is 1e-03 microMolePerLiter. Please refer to the Facility's website for current detection limits which are different depending on the nutrient. Detection limits are different for each nutrient and have gotten lower over the time series with improving technology. </para>
           <para># Data Cleaning</para>
@@ -232,7 +232,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
       <physical>
         <objectName>nes-lter-nutrient-mvco.csv</objectName>
         <size unit="bytes">218872</size>
-        <authentication method="MD5">ed02abd4e0bf11d48c53c312ba455248</authentication>
+        <authentication method="MD5">d57dbf11c4bab4743ce7ada4ecefa0ad</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>

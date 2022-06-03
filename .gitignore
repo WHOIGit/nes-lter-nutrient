@@ -111,7 +111,7 @@ venv.bak/
 .Rproj.user
 
 # Provided Excel file
-MVCO_nut_copy01Nov2021.xls
+MVCO_nut_copy*.xls
 
 # History files
 .Rhistory

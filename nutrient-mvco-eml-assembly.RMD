@@ -38,7 +38,7 @@ here("nes-lter-nutrient")
 ## Read in provided data
 ```{r}
 
-nutrients_input <- read_excel('MVCO_nut_copy01Nov2021.xls') 
+nutrients_input <- read_excel('MVCO_nut_copy20220601.xls') 
 
 ```
 ## Update column names
@@ -253,8 +253,6 @@ nutrients <- nutrients_long %>%
   filter(!is.na(nitrate | ammonium | silicate | phosphate))
 
 # confirm results # can also check against dataframe "check"
-# nutrients_diff <- nutrients_long %>%
-#  filter(is.na(nitrate) &  !is.na(ammonium))
 
 ```
 # Add quality flag for phosphate samples
@@ -488,3 +486,4 @@ make_eml(here(),
 project_insert(pkg_id)
 
 ```
+
