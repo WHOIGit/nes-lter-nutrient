@@ -472,7 +472,7 @@ Generate the package and insert the parent project node into the resulting EML
 
 pkg_id <- 'knb-lter-nes.1.3'  
 make_eml(here(),
-         dataset.title='Dissolved inorganic nutrients from the Marthas Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2003 (NES-LTER since 2017)',
+         dataset.title="Dissolved inorganic nutrients from the Martha's Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2003 (NES-LTER since 2017)",
          data.table='nes-lter-nutrient-mvco.csv',
          data.table.description='Dissolved inorganic nutrients from water column bottle samples taken near the Marthas Vineyard Coastal Observatory',
          data.table.name = 'nes-lter-nutrient-mvco',

@@ -11,7 +11,7 @@
     </allow>
   </access>
   <dataset>
-    <title>Dissolved inorganic nutrients from the Marthas Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2003 (NES-LTER since 2017)</title>
+    <title>Dissolved inorganic nutrients from the Martha's Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2003 (NES-LTER since 2017)</title>
     <creator>
       <individualName>
         <givenName>Heidi</givenName>
@@ -48,7 +48,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>Metadata Provider</role>
     </associatedParty>
-    <pubDate>2022-06-03</pubDate>
+    <pubDate>2022-06-08</pubDate>
     <abstract>
       <para>Dissolved inorganic nutrients including nitrate + nitrite, ammonium, silicate, and phosphate are measured from water column bottle and bucket samples taken on NES-LTER day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in micromole per liter). Each sample may have up to 3 replicates.</para>
     </abstract>
