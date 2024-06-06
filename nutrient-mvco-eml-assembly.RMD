@@ -534,7 +534,7 @@ make_eml(here(),
          user.id = "NES",
          user.domain = "LTER",
          package.id = pkg_id)
-project_insert(pkg_id)
+project_insert(edi_pkg = pkg_id, filename = 'parent_project_NESI-II_RAPID.txt')
 
 ```
 

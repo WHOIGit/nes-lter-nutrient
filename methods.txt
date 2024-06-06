@@ -4,7 +4,7 @@ The Martha's Vineyard Coastal Observatory (MVCO) Air-Sea Interaction Tower (ASIT
 
 A monthly water sample has been collected at MVCO since May 2003. The sample is typically collected using a CTD rosette or bucket during a day trip on a coastal vessel such as the R/V Tioga. Starting in February 2018, the monthly MVCO water sample was collected 4 times per year as part of a larger field sampling campaign during Northeast U.S. Shelf Long-Term Ecological Research project (NES-LTER) quarterly seasonal transect research cruises. 
 
-Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruise always occur on a larger ship than is typical for monthly sample collection, but they use the same CTD rosette collection methods as the full MVCO time series. All other methods including filtering and analysis methods are the same between transect and MVCO standard sampling. 
+Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruises always occur on a larger ship than is typical for monthly sample collection, but they use the same CTD rosette collection methods as the full MVCO time series. All other methods including filtering and analysis methods are the same between transect and MVCO standard sampling. 
 
 # CTD Rosette Bottle and Bucket Sampling  
 
@@ -32,7 +32,7 @@ We assured that the geographic and temporal coverage of the clean data table wer
 
 # Related Packages
 
-Dissolved inorganic nutrient data for NES-LTER transect cruises which covers a larger geographic area of the same region are in the following package:
+Dissolved inorganic nutrient data for NES-LTER transect cruises, which cover a larger geographic area of the same region, are in the following package:
 
 Sosik, H.M., E. Crockford, and E. Peacock. 2021. Dissolved inorganic nutrients from NES-LTER Transect cruises, including 4 macro-nutrients from water column bottle samples, ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/ec6e5c76c7ad4e0da0a8d1cec84fa3f5 (Accessed 2024-04-16).
 

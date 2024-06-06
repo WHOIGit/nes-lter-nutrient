@@ -29,6 +29,7 @@
       </individualName>
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <electronicMailAddress>ecrockford@whoi.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0002-2122-0462</userId>
     </creator>
     <creator>
       <individualName>
@@ -37,17 +38,8 @@
       </individualName>
       <organizationName>Northeast U.S. Shelf LTER</organizationName>
       <electronicMailAddress>epeacock@whoi.edu</electronicMailAddress>
+      <userId directory="https://orcid.org">https://orcid.org/0000-0003-0194-7282</userId>
     </creator>
-    <associatedParty>
-      <individualName>
-        <givenName>Kate</givenName>
-        <surName>Morkeski</surName>
-      </individualName>
-      <organizationName>Northeast U.S. Shelf LTER</organizationName>
-      <electronicMailAddress>kmorkeski@whoi.edu</electronicMailAddress>
-      <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
-      <role>Metadata Provider</role>
-    </associatedParty>
     <pubDate>2024-06-06</pubDate>
     <abstract>
       <para>Dissolved inorganic nutrients including nitrate + nitrite, ammonium, silicate, and phosphate are measured from water column bottle and bucket samples taken on NES-LTER day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in micromole per liter). Each sample may have up to 3 replicates.</para>
@@ -73,6 +65,9 @@
       <keyword>Silicate</keyword>
       <keywordThesaurus>Global Change Master Directory (GCMD)</keywordThesaurus>
     </keywordSet>
+    <additionalInfo>
+      <para>Special thanks to Paul Henderson at the WHOI Nutrient Analytical Facility for analyzing the samples collected for this data package.</para>
+    </additionalInfo>
     <intellectualRights>
       <para>This information is released under the Creative Commons license - Attribution - CC BY (https://creativecommons.org/licenses/by/4.0/). The consumer of these data ("Data User" herein) is required to cite it appropriately in any publication that results from its use. The Data User should realize that these data may be actively used by others for ongoing research and that coordination may be necessary to prevent duplicate publication. The Data User is urged to contact the authors of these data if any questions about methodology or results occur. Where appropriate, the Data User is encouraged to consider collaboration or co-authorship with the authors. The Data User should realize that misinterpretation of data may occur if used out of context of the original study. While substantial efforts are made to ensure the accuracy of data and associated documentation, complete accuracy of data sets cannot be guaranteed. All data are made available "as is." The Data User should be aware, however, that data are updated periodically and it is the responsibility of the Data User to check for new versions of the data. The data authors and the repository where these data were obtained shall not be liable for damages resulting from any use or misinterpretation of the data. Thank you.
 </para>
@@ -112,7 +107,7 @@
           <para># About Martha's Vineyard Coastal Observatory</para>
           <para>The Martha's Vineyard Coastal Observatory (MVCO) Air-Sea Interaction Tower (ASIT) is located at 41.325 N, 70.567 W. See https://mvco.whoi.edu/about/ for more site information. Samples were collected in the vicinity of the tower. Early in the time series, samples were also collected from along- and cross-shore transects nearby. </para>
           <para>A monthly water sample has been collected at MVCO since May 2003. The sample is typically collected using a CTD rosette or bucket during a day trip on a coastal vessel such as the R/V Tioga. Starting in February 2018, the monthly MVCO water sample was collected 4 times per year as part of a larger field sampling campaign during Northeast U.S. Shelf Long-Term Ecological Research project (NES-LTER) quarterly seasonal transect research cruises. </para>
-          <para>Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruise always occur on a larger ship than is typical for monthly sample collection, but they use the same CTD rosette collection methods as the full MVCO time series. All other methods including filtering and analysis methods are the same between transect and MVCO standard sampling. </para>
+          <para>Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruises always occur on a larger ship than is typical for monthly sample collection, but they use the same CTD rosette collection methods as the full MVCO time series. All other methods including filtering and analysis methods are the same between transect and MVCO standard sampling. </para>
           <para># CTD Rosette Bottle and Bucket Sampling  </para>
           <para>Samples were collected from the water column at multiple depths using Niskin bottles on a CTD rosette system. Some samples were collected at the surface with a bucket. In the event_number_niskin field of the data table, MVCO event number is combined with a suffix indicating a bucket sample (_00), Niskin bottle number (e.g. _01), or collaborating institution (_UNH). The depth for bucket samples is 0 m; some surface Niskin samples also have depth recorded as 0 m. </para>
           <para># Nutrient Filtering Protocol</para>
@@ -126,14 +121,14 @@
           <para># Quality Assurance</para>
           <para>We assured that the geographic and temporal coverage of the clean data table were within expected ranges. We confirmed that values matched the previous version of this data package. For each nutrient we checked differences between replicates, visually inspected plotted values, and performed a range check. We provided an IODE quality flag for the phosphate data to identify a small number of samples with possible contamination (quality flag 3 for questionable). All other samples are considered good quality.  </para>
           <para># Related Packages</para>
-          <para>Dissolved inorganic nutrient data for NES-LTER transect cruises which covers a larger geographic area of the same region are in the following package:</para>
+          <para>Dissolved inorganic nutrient data for NES-LTER transect cruises, which cover a larger geographic area of the same region, are in the following package:</para>
           <para>Sosik, H.M., E. Crockford, and E. Peacock. 2021. Dissolved inorganic nutrients from NES-LTER Transect cruises, including 4 macro-nutrients from water column bottle samples, ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/ec6e5c76c7ad4e0da0a8d1cec84fa3f5 (Accessed 2024-04-16).</para>
           <para/>
         </description>
       </methodStep>
     </methods>
     <project>
-      <title>Northeast U.S. Shelf LTER</title>
+      <title>LTER: Scales of Variability in Ecosystem Dynamics and Production on the Changing Northeast U.S. Shelf (NES II)</title>
       <personnel>
         <individualName>
           <givenName>Heidi</givenName>
@@ -142,15 +137,6 @@
         <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
         <userId directory="https://orcid.org">https://orcid.org/0000-0002-4591-2842</userId>
         <role>Principal Investigator</role>
-      </personnel>
-      <personnel>
-        <individualName>
-          <givenName>Stace</givenName>
-          <surName>Beaulieu</surName>
-        </individualName>
-        <electronicMailAddress>sbeaulieu@whoi.edu</electronicMailAddress>
-        <userId directory="https://orcid.org">https://orcid.org/0000-0002-2609-5453</userId>
-        <role>Co-Principal Investigator</role>
       </personnel>
       <personnel>
         <individualName>
@@ -168,15 +154,6 @@
         </individualName>
         <electronicMailAddress>rji@whoi.edu</electronicMailAddress>
         <userId directory="https://orcid.org">https://orcid.org/0000-0002-8839-5427</userId>
-        <role>Co-Principal Investigator</role>
-      </personnel>
-      <personnel>
-        <individualName>
-          <givenName>Steven</givenName>
-          <surName>Lentz</surName>
-        </individualName>
-        <electronicMailAddress>slentz@whoi.edu</electronicMailAddress>
-        <userId directory="https://orcid.org">https://orcid.org/0000-0001-7498-0281</userId>
         <role>Co-Principal Investigator</role>
       </personnel>
       <personnel>
@@ -217,6 +194,15 @@
       </personnel>
       <personnel>
         <individualName>
+          <givenName>Mei</givenName>
+          <surName>Sato</surName>
+        </individualName>
+        <electronicMailAddress>msato@whoi.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0002-0217-9898</userId>
+        <role>Co-Principal Investigator</role>
+      </personnel>
+      <personnel>
+        <individualName>
           <givenName>Rachel</givenName>
           <surName>Stanley</surName>
         </individualName>
@@ -224,24 +210,63 @@
         <userId directory="https://orcid.org">https://orcid.org/0000-0003-4860-2476</userId>
         <role>Co-Principal Investigator</role>
       </personnel>
+      <personnel>
+        <individualName>
+          <givenName>Weifeng Gordon</givenName>
+          <surName>Zhang</surName>
+        </individualName>
+        <electronicMailAddress>wzhang@whoi.edu</electronicMailAddress>
+        <userId directory="https://orcid.org">https://orcid.org/0000-0002-2819-1780</userId>
+        <role>Co-Principal Investigator</role>
+      </personnel>
       <abstract>
         <para>The Northeast U.S. Shelf (NES) Long-Term Ecological Research (LTER) project integrates observations, experiments, and models to understand and predict how planktonic food webs are changing, and how those changes impact the productivity of higher trophic levels. The NES-LTER is co-located with the Northeast U.S. Continental Shelf Large Marine Ecosystem, spanning the Middle Atlantic Bight and Gulf of Maine. Our focal cross-shelf transect extends about 150 km southward from Martha’s Vineyard, MA, to just beyond the shelf break. Our overarching question is: How is climate change impacting the pelagic NES ecosystem and, in particular, affecting the relationship between compositional (e.g., species diversity and size structure) and aggregate (e.g., rates of primary production, and transfer of energy to important forage fish species) variability?</para>
       </abstract>
       <funding>
-        <para>NSF Award OCE-1655686</para>
+        <para>NSF Award OCE-2322676</para>
       </funding>
+      <relatedProject>
+        <title>LTER: Linking Pelagic Community Structure with Ecosystem Dynamics and Production Regimes on the Changing Northeast US Shelf (NES I)</title>
+        <personnel>
+          <individualName>
+            <givenName>Heidi</givenName>
+            <surName>Sosik</surName>
+          </individualName>
+          <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">https://orcid.org/0000-0002-4591-2842</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <funding>NSF Award OCE-1655686</funding>
+      </relatedProject>
+      <relatedProject>
+        <title>RAPID: Collaborative Research: Autumn transition in plankton ecology during an ocean heatwave on the Northeast U.S. Shelf</title>
+        <personnel>
+          <individualName>
+            <givenName>Heidi</givenName>
+            <surName>Sosik</surName>
+          </individualName>
+          <electronicMailAddress>hsosik@whoi.edu</electronicMailAddress>
+          <userId directory="https://orcid.org">0000-0002-4591-2842</userId>
+          <role>Principal Investigator</role>
+        </personnel>
+        <award>
+          <funderName>National Science Foundation</funderName>
+          <awardNumber>NSF Award OCE-210243</awardNumber>
+          <title>RAPID: Collaborative Research: Autumn transition in plankton ecology during an ocean heatwave on the Northeast U.S. Shelf</title>
+        </award>
+      </relatedProject>
     </project>
     <dataTable>
       <entityName>nes-lter-nutrient-mvco</entityName>
       <entityDescription>Dissolved inorganic nutrients from water column bottle samples taken near the Marthas Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-nutrient-mvco.csv</objectName>
-        <size unit="bytes">250340</size>
-        <authentication method="MD5">2e1229f2becfffdad234be8fc53fea1a</authentication>
+        <size unit="bytes">247833</size>
+        <authentication method="MD5">ea7972674830fdbe3bb5ebf0ace5dbd3</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
-            <recordDelimiter>\r\n</recordDelimiter>
+            <recordDelimiter>\n</recordDelimiter>
             <attributeOrientation>column</attributeOrientation>
             <simpleDelimited>
               <fieldDelimiter>,</fieldDelimiter>
