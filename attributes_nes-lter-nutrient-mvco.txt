@@ -1,15 +1,15 @@
 attributeName	attributeDefinition	class	unit	dateTimeFormatString	missingValueCode	missingValueCodeExplanation
-event_number	Identification number for each MVCO discrete sampling event	character			NA	Missing value
-event_number_niskin	Identification number for each Niskin or bucket collection during MVCO discrete sampling event	character			NA	Missing value
+event_number	Identification number for each MVCO discrete sampling event	character				
+event_number_niskin	Identification number for each Niskin or bucket collection during MVCO discrete sampling event	character				
 ship	Name of vessel from which samples were collected	character				
 cruise_ID	Cruise identifer for the R/V Tioga	character				
-datetime	Date and time in UTC when cast started or bucket filled	Date		YYYY-MM-DD hh:mm:ss	NA	Missing value
-latitude	Ship's latitude when cast started or latitude of MVCO	numeric	degree		NA	Missing value
-longitude	Ship's longitude when cast started or longitude of MVCO	numeric	degree		NA	Missing value
-depth	Depth of sample below sea surface. URI http://vocab.nerc.ac.uk/collection/P09/current/DEPH/	numeric	meter		NA	Missing value
-replicate	Lowercase letter indicating replicate subsample drawn from the same rosette bottle or bucket	character			NA	Missing value
-nitrate_nitrite	Nitrate+nitrite concentration in the water column. URI http://vocab.nerc.ac.uk/collection/P02/current/NTRA/	numeric	micromolePerLiter		NA	Missing value
-ammonium	Ammonium concentration in the water column URI http://vocab.nerc.ac.uk/collection/P02/current/AMON/	numeric	micromolePerLiter		NA	Missing value
-silicate	Silicate concentration in the water column URI http://vocab.nerc.ac.uk/collection/P02/current/SLCA/	numeric	micromolePerLiter		NA	Missing value
-phosphate	Phosphate concentration in the water column. URI http://vocab.nerc.ac.uk/collection/P02/current/PHOS/	numeric	micromolePerLiter		NA	Missing value
+datetime	Date and time in UTC when cast started or bucket filled	Date		YYYY-MM-DD hh:mm:ss		
+latitude	Ship's latitude when cast started or latitude of MVCO	numeric	degree		NaN	Missing value
+longitude	Ship's longitude when cast started or longitude of MVCO	numeric	degree		NaN	Missing value
+depth	Depth of sample below sea surface. URI http://vocab.nerc.ac.uk/collection/P09/current/DEPH/	numeric	meter		NaN	Missing value
+replicate	Lowercase letter indicating replicate subsample drawn from the same rosette bottle or bucket	character				
+nitrate_nitrite	Nitrate+nitrite concentration in the water column. URI http://vocab.nerc.ac.uk/collection/P02/current/NTRA/	numeric	micromolePerLiter		NaN	Missing value
+ammonium	Ammonium concentration in the water column URI http://vocab.nerc.ac.uk/collection/P02/current/AMON/	numeric	micromolePerLiter		NaN	Missing value
+silicate	Silicate concentration in the water column URI http://vocab.nerc.ac.uk/collection/P02/current/SLCA/	numeric	micromolePerLiter		NaN	Missing value
+phosphate	Phosphate concentration in the water column. URI http://vocab.nerc.ac.uk/collection/P02/current/PHOS/	numeric	micromolePerLiter		NaN	Missing value
 iode_quality_flag_phosphate	IODE Quality Flag primary level	categorical				

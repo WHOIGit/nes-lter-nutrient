@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="knb-lter-nes.1.3" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd" system="edi">
+<eml:eml xmlns:eml="https://eml.ecoinformatics.org/eml-2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:stmml="http://www.xml-cml.org/schema/stmml-1.2" packageId="knb-lter-nes.1.4" xsi:schemaLocation="https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd https://eml.ecoinformatics.org/eml-2.2.0/eml.xsd" system="edi">
   <access authSystem="https://pasta.edirepository.org/authentication" order="allowFirst" scope="document">
     <allow>
       <principal>uid=NES,o=LTER,dc=ecoinformatics,dc=org</principal>
@@ -48,7 +48,7 @@
       <userId directory="https://orcid.org">https://orcid.org/0000-0002-2903-5851</userId>
       <role>Metadata Provider</role>
     </associatedParty>
-    <pubDate>2022-06-08</pubDate>
+    <pubDate>2024-06-06</pubDate>
     <abstract>
       <para>Dissolved inorganic nutrients including nitrate + nitrite, ammonium, silicate, and phosphate are measured from water column bottle and bucket samples taken on NES-LTER day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in micromole per liter). Each sample may have up to 3 replicates.</para>
     </abstract>
@@ -93,7 +93,7 @@
             <calendarDate>2003-05-29</calendarDate>
           </beginDate>
           <endDate>
-            <calendarDate>2020-11-19</calendarDate>
+            <calendarDate>2024-05-08</calendarDate>
           </endDate>
         </rangeOfDates>
       </temporalCoverage>
@@ -231,8 +231,8 @@
       <entityDescription>Dissolved inorganic nutrients from water column bottle samples taken near the Marthas Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-nutrient-mvco.csv</objectName>
-        <size unit="bytes">218872</size>
-        <authentication method="MD5">d57dbf11c4bab4743ce7ada4ecefa0ad</authentication>
+        <size unit="bytes">248300</size>
+        <authentication method="MD5">6c6b27dce148fc9916e6fdeca0f0c9d3</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
@@ -258,10 +258,6 @@
               </nonNumericDomain>
             </nominal>
           </measurementScale>
-          <missingValueCode>
-            <code>NA</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
         </attribute>
         <attribute>
           <attributeName>event_number_niskin</attributeName>
@@ -276,10 +272,6 @@
               </nonNumericDomain>
             </nominal>
           </measurementScale>
-          <missingValueCode>
-            <code>NA</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
         </attribute>
         <attribute>
           <attributeName>ship</attributeName>
@@ -319,10 +311,6 @@
               <dateTimeDomain/>
             </dateTime>
           </measurementScale>
-          <missingValueCode>
-            <code>NA</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
         </attribute>
         <attribute>
           <attributeName>latitude</attributeName>
@@ -343,7 +331,7 @@
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -366,7 +354,7 @@
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -389,7 +377,7 @@
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -406,10 +394,6 @@
               </nonNumericDomain>
             </nominal>
           </measurementScale>
-          <missingValueCode>
-            <code>NA</code>
-            <codeExplanation>Missing value</codeExplanation>
-          </missingValueCode>
         </attribute>
         <attribute>
           <attributeName>nitrate_nitrite</attributeName>
@@ -430,7 +414,7 @@
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -453,7 +437,7 @@
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -476,7 +460,7 @@
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -499,7 +483,7 @@
             </ratio>
           </measurementScale>
           <missingValueCode>
-            <code>NA</code>
+            <code>NaN</code>
             <codeExplanation>Missing value</codeExplanation>
           </missingValueCode>
         </attribute>
@@ -525,7 +509,7 @@
           </measurementScale>
         </attribute>
       </attributeList>
-      <numberOfRecords>2214</numberOfRecords>
+      <numberOfRecords>2506</numberOfRecords>
     </dataTable>
   </dataset>
   <additionalMetadata>
@@ -541,7 +525,7 @@
     <metadata>
       <emlEditor>
         <app>EMLassemblyline</app>
-        <release>3.5.3</release>
+        <release>3.5.5</release>
       </emlEditor>
     </metadata>
   </additionalMetadata>

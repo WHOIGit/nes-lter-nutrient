@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # load required packages 
 
-# two of the required packages are installed from GitHub
+# two of the required packages are instinalled from GitHub
 # uncomment these lines to update as needed
 # library(remotes)
 # remotes::install_github("EDIorg/EMLassemblyline")
@@ -29,6 +29,7 @@ library(xml2)
 library(geosphere)
 library(httr)
 library(compareDF)
+library(dplyr)
 
 #set path to root of project
 here("nes-lter-nutrient")
@@ -38,7 +39,7 @@ here("nes-lter-nutrient")
 ## Read in provided data
 ```{r}
 
-nutrients_input <- read_excel('MVCO_nut_copy20220601.xls') 
+nutrients_input <- read_excel('MVCO_nut_copy20240604.xls') 
 
 ```
 ## Update column names
@@ -101,62 +102,6 @@ nutrients_input <- nutrients_input[order(nutrients_input$datetime),]
 # remove event_number_niskin field from this dataframe only
 nutr_input_compare <- nutrients_input %>%
  select(-event_number_niskin)
-
-```
-
-## Read in version 1 MVCO nutrient package to compare to new data set
-
-```{r}
-
-url <- ('https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-nes.1.2&entityid=9740e9ac9cd58ed3640158fbedef8180')
-
-httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
-tf
-
-nutr_pubd <- read_csv(tf, TRUE, show_col_types = FALSE) 
-
-```
-
-# format version 1 dataframe
-
-```{r}
-
-# rename nutrient columns
-nutr_pubd <-  nutr_pubd %>% 
-  rename(datetime = 'time (UTC)') %>% 
-  rename(nitrate_a = ntra_a) %>% 
-  rename(nitrate_b = ntra_b) %>%
-  rename(nitrate_c = ntra_c) %>%
-  rename(ammonium_a = amon_a) %>%
-  rename(ammonium_b = amon_b) %>%
-  rename(ammonium_c = amon_c) %>%
-  rename(silicate_a = slca_a) %>%
-  rename(silicate_b =  slca_b) %>%
-  rename(silicate_c =  slca_c) %>%
-  rename(phosphate_a = phos_a) %>%
-  rename(phosphate_b = phos_b) %>%
-  rename(phosphate_c = phos_c) 
-
-# ensure rows are in time order
-nutr_pubd <- nutr_pubd[order(nutr_pubd$datetime),]
-
-```
-
-# compare original and new versions of nutrient data and export table of differences
-
-```{r}
-
-comparison <- compare_df(nutr_input_compare, nutr_pubd, c("event_number", "depth"))
-
-create_output_table(comparison, output_type='xlsx', file_name='version_comparison.xlsx')
-
-# findings: 
-# 4 instances in which nutrient concentrations differ by 0.001 between versions due to rounding 
-# many instances in which longitude differs by 0.001 between versions
-# new version includes these event numbers not included in the original version:
-    # MVCO_003-MVCO_045, May 2003-Feb 2006
-    # MVCO_368, 24-August-2016, original had only one depth, new version includes 3 additional depths
-    # MVCO_382-MVCO_435, June 2017-November 2020
 
 ```
 
@@ -293,6 +238,89 @@ nutrients <- nutrients %>%
  
 ```
 
+# Merge MVCO samples from transect cruises
+
+```{r}
+base_api_url <- 'https://nes-lter-data.whoi.edu/api'
+
+cruise_list <- api_list_cruises()
+
+all_cruises <- NA
+print(cruise_list)
+for(cruise_id in cruise_list) {
+  cruise_id <- str_to_lower(cruise_id)
+  nut_url <- glue::glue('{base_api_url}/nut/{cruise_id}.csv')
+  print(nut_url)
+
+  cruise_nut <- tryCatch(read_csv(nut_url), 
+                 error=function(cond) 
+                     { message(cond)
+                       return(NULL) })
+
+  if(nrow(cruise_nut) > 0 && !is.null(cruise_nut)) {
+    if(length(all_cruises) == 1 && is.na(all_cruises)) {
+      all_cruises <- cruise_nut
+    } else {
+      all_cruises <- plyr::rbind.fill(all_cruises, cruise_nut)
+    }
+  }
+}
+
+# Transect MVCO ranges lat =  41.3125 - 41.3269, lon = -70.5629 to -70.5857
+# MVCO_nut_copy ranges lat = 41.1364 - 41.339, lon = -70.4151 to -70.6839
+lat_min <- 41.13
+lat_max <- 41.33
+lon_min <- -70.68
+lon_max <- -70.41
+
+# Filter rows within the specified range of latitude and longitude
+filtered_nut <- all_cruises %>%
+  filter(latitude >= lat_min & latitude <= lat_max,
+         longitude >= lon_min & longitude <= lon_max)
+
+filtered_nut <- filtered_nut %>%
+  rename(nitrate = nitrate_nitrite,
+         datetime = date)
+
+# Add ship, event_number, event_number_niskin, and cruise_ID columns and populate
+filtered_nut <- filtered_nut %>%
+  mutate(ship = case_when(
+    grepl("^AR", cruise) ~ "Armstrong",
+    grepl("^AT", cruise) ~ "Atlantis",
+    grepl("^EN", cruise) ~ "Endeavor",
+    grepl("^HRS", cruise) ~ "Sharp",
+    TRUE ~ ""  # Set to empty string for unmatched cases
+      ),
+    event_number = paste(cruise, cast, sep = "_"),  
+    event_number_niskin = paste(cruise, cast, niskin, sep = "_"), 
+    cruise_ID = cruise
+  )
+
+# Merge transect nut data with nutrients
+common_columns <- intersect(names(nutrients), names(filtered_nut))
+filtered_cruises_aligned <- filtered_cruises %>% select(all_of(common_columns))
+missing_columns <- setdiff(names(nutrients), names(filtered_cruises_aligned))
+filtered_cruises_aligned[missing_columns] <- NA
+filtered_cruises_aligned <- filtered_cruises_aligned %>% select(names(nutrients))
+nutrients_updated <- bind_rows(nutrients, filtered_cruises_aligned)
+
+# Round lat/long and nutrient concentrations
+nutrients_updated <- nutrients_updated  %>% 
+  mutate(latitude = round(latitude, 4)) %>% 
+  mutate(longitude = round(longitude, 4))  %>% 
+  mutate(nitrate = round(nitrate, 3))  %>% 
+  mutate(ammonium = round(ammonium, 3))  %>% 
+  mutate(silicate = round(silicate, 3))  %>% 
+  mutate(phosphate = round(phosphate, 3))
+
+# Set iode_quality_flag_phosphate to 2 where it is NA
+nutrients_updated <- nutrients_updated %>%
+  mutate(iode_quality_flag_phosphate = ifelse(is.na(iode_quality_flag_phosphate), 2, iode_quality_flag_phosphate))
+
+nutrients <- nutrients_updated[order(nutrients_updated$datetime), ]
+
+```
+
 ## QA: Determine if any nutrient values exceed expectations
 
 According to a global range check: nitrate less than 30 umol/l and ammonium less than 5 umol/l based on [Rees et al. 2006](https://doi.org/10.1016/j.dsr2.2006.05.008), phosphate less than 3 (no great reference but this appears to be upper for Atlantic), silicate less than 60 (Elements of Physical Oceanography chapter on marine silica cycle, for deep Atlantic, this is probably too high).
@@ -341,21 +369,24 @@ nutrients_longer <- nutrients %>%
 # boxplot of the 4 nutrients in single panel
 ggplot(nutrients_longer, aes(x=nutrient, y=value))+geom_boxplot(outlier.size = 0.5)+theme_classic()
 
+ggsave("4-nutrients-single-panel.png")
+
 # boxplots of individual nutrients
 for (i in 1:length(nut_cols)) {
   nut_subset <- nutrients_longer %>% filter(nutrient == nut_cols[i])
-  
+
   # ggplot where x = cast, y = value and the lineplots are grouped by cruise
   p <- ggplot(data = nut_subset, aes(x = nutrient, y = value)) +
     geom_boxplot(outlier.size = 0.5) +
     ylab(paste0(nut_cols[i], " concentration (µmol/L)")) +
     theme_classic()
-  print(p)
+  ggsave(paste0("nutrients-individual-", nut_cols[i], ".png"), plot = p)
 }
 
 ggplot(nutrients, aes(x=as.factor(iode_quality_flag_phosphate), y=phosphate)) + 
    geom_boxplot() + xlab('iode_quality_flag')
 
+ggsave("nutrients-phosphate.png")
 
 ```
 
@@ -386,6 +417,8 @@ ggplot(data = nut_check_long, aes(x = nutrient_diffs, y = value)) +
     geom_boxplot(outlier.size = 0.5) +
     ylab(paste0("Concentration (µmol/L)")) +
     theme_classic()
+
+ggsave("nutrients-differences.png")
 
 ```
 
@@ -427,21 +460,44 @@ east_west <- nutrients %>% filter(-70.53 < longitude | longitude < -70.59)
 map_locs(east_west, colorvar = "ammonium", region = "transect")
 
 ```
-
-
-
-## Create package data file
+# Format data for package
 
 ```{r}
 
 # rename nitrate column to nitrate+nitrite
 nutrients <- rename(nutrients, nitrate_nitrite = nitrate) 
 
-# order rows by event_number_niskin and replicate
-nutrients <- nutrients [order(nutrients$event_number_niskin, nutrients$replicate),]
+nutrients <- nutrients %>%
+  mutate(
+    ship = ifelse(is.na(ship), "", ship),
+    cruise_ID = ifelse(is.na(cruise_ID), "", cruise_ID)
+  )
+
+```
+
+## Read in previous version MVCO nutrient package to compare to new data set
+
+```{r}
+
+url <- ('https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-nes.1.3&entityid=077bb6d32f84c773852b678f1fe52e57')
+
+httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
+tf
+
+nutr_pubd <- read_csv(tf, TRUE, show_col_types = FALSE) 
+
+comparison <- compare_df(nutrients, nutr_pubd, c("event_number", "depth"))
+
+create_output_table(comparison, output_type='xlsx', file_name='version_comparison.xlsx')
+
+```
+
+## Create package data file
+
+```{r}
   
 # write csv file for package
-write.csv(nutrients, "nes-lter-nutrient-mvco.csv", row.names = FALSE)
+write.csv(nutrients, "nes-lter-nutrient-mvco.csv", na = "NaN", row.names = FALSE)
 
 ```
 
@@ -470,7 +526,7 @@ Generate the package and insert the parent project node into the resulting EML
 
 ```{r}
 
-pkg_id <- 'knb-lter-nes.1.3'  
+pkg_id <- 'knb-lter-nes.1.4'  
 make_eml(here(),
          dataset.title="Dissolved inorganic nutrients from the Martha's Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2003 (NES-LTER since 2017)",
          data.table='nes-lter-nutrient-mvco.csv',

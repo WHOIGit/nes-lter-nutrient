@@ -115,3 +115,6 @@ MVCO_nut_copy*.xls
 
 # History files
 .Rhistory
+
+# Plot files
+*.png
