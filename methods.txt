@@ -2,6 +2,10 @@
 
 The Martha's Vineyard Coastal Observatory (MVCO) Air-Sea Interaction Tower (ASIT) is located at 41.325 N, 70.567 W. See https://mvco.whoi.edu/about/ for more site information. Samples were collected in the vicinity of the tower. Early in the time series, samples were also collected from along- and cross-shore transects nearby. 
 
+A monthly water sample has been collected at MVCO since May 2003. The sample is typically collected using a CTD rosette or bucket during a day trip on a coastal vessel such as the R/V Tioga. Starting in February 2018, the monthly MVCO water sample was collected 4 times per year as part of a larger field sampling campaign during Northeast U.S. Shelf Long-Term Ecological Research project (NES-LTER) quarterly seasonal transect research cruises. 
+
+Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruise always occur on a larger ship than is typical for monthly sample collection, but they use the same CTD rosette collection methods as the full MVCO time series. All other methods including filtering and analysis methods are the same between transect and MVCO standard sampling. 
+
 # CTD Rosette Bottle and Bucket Sampling  
 
 Samples were collected from the water column at multiple depths using Niskin bottles on a CTD rosette system. Some samples were collected at the surface with a bucket. In the event_number_niskin field of the data table, MVCO event number is combined with a suffix indicating a bucket sample (_00), Niskin bottle number (e.g. _01), or collaborating institution (_UNH). The depth for bucket samples is 0 m; some surface Niskin samples also have depth recorded as 0 m. 
@@ -16,7 +20,7 @@ All samples: Then, without touching filter to sample vial (acid-washed scintilla
 
 # WHOI Nutrient Facility Sample Analysis
 
-Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/) which operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control. Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good. If the samples fall outside of the duplicate or spike addition quality control they are rerun until they fall within quality control parameters. Precision is 1e-03 microMolePerLiter. Please refer to the Facility's website for current detection limits which are different depending on the nutrient. Detection limits are different for each nutrient and have gotten lower over the time series with improving technology. 
+Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic Institution's Nutrient Analytical Facility (https://web.whoi.edu/nutrient/) which operates a four-channel segmented flow SEAL AA3 HR Autoanalyzer. Prior to 2013, the facility utilized a Lachat Quickchem 8000 automated flow-through analyzer. Methods for both instruments were exactly the same. Duplicates and spiked additions are run for quality control. Standards are made daily and Certified Reference material is run daily to ensure the standards and/or reagents are good. If the samples fall outside of the duplicate or spike addition quality control they are rerun until they fall within quality control parameters. Precision is 1e-03 microMolePerLiter. The detection limit for all nutrient types prior to April 2012 was <0.05 micromolar. From April 2012 to present, the micromolar detection limit is on a per nutrient basis as the following: ammonium <0.015, silicate <0.03, phosphate <0.009, and nitrate plus nitrite <0.04. 
 
 # Data Cleaning
 
@@ -26,5 +30,9 @@ All Below Detection Limit values were set to zero. Event numbers with no nutrien
 
 We assured that the geographic and temporal coverage of the clean data table were within expected ranges. We confirmed that values matched the previous version of this data package. For each nutrient we checked differences between replicates, visually inspected plotted values, and performed a range check. We provided an IODE quality flag for the phosphate data to identify a small number of samples with possible contamination (quality flag 3 for questionable). All other samples are considered good quality.  
 
+# Related Packages
 
+Dissolved inorganic nutrient data for NES-LTER transect cruises which covers a larger geographic area of the same region are in the following package:
+
+Sosik, H.M., E. Crockford, and E. Peacock. 2021. Dissolved inorganic nutrients from NES-LTER Transect cruises, including 4 macro-nutrients from water column bottle samples, ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/ec6e5c76c7ad4e0da0a8d1cec84fa3f5 (Accessed 2024-04-16).
 
