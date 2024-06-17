@@ -1,3 +1,4 @@
 attributeName	code	definition
 iode_quality_flag_phosphate	1	good
+iode_quality_flag_phosphate	2	quality not evaluated, not available or unknown
 iode_quality_flag_phosphate	3	questionable/suspect

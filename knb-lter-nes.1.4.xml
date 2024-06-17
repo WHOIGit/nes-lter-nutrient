@@ -40,7 +40,7 @@
       <electronicMailAddress>epeacock@whoi.edu</electronicMailAddress>
       <userId directory="https://orcid.org">https://orcid.org/0000-0003-0194-7282</userId>
     </creator>
-    <pubDate>2024-06-06</pubDate>
+    <pubDate>2024-06-17</pubDate>
     <abstract>
       <para>Dissolved inorganic nutrients including nitrate + nitrite, ammonium, silicate, and phosphate are measured from water column bottle and bucket samples taken on NES-LTER day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in micromole per liter). Each sample may have up to 3 replicates.</para>
     </abstract>
@@ -106,8 +106,8 @@
         <description>
           <para># About Martha's Vineyard Coastal Observatory</para>
           <para>The Martha's Vineyard Coastal Observatory (MVCO) Air-Sea Interaction Tower (ASIT) is located at 41.325 N, 70.567 W. See https://mvco.whoi.edu/about/ for more site information. Samples were collected in the vicinity of the tower. Early in the time series, samples were also collected from along- and cross-shore transects nearby. </para>
-          <para>A monthly water sample has been collected at MVCO since May 2003. The sample is typically collected using a CTD rosette or bucket during a day trip on a coastal vessel such as the R/V Tioga. Starting in February 2018, the monthly MVCO water sample was collected 4 times per year as part of a larger field sampling campaign during Northeast U.S. Shelf Long-Term Ecological Research project (NES-LTER) quarterly seasonal transect research cruises. </para>
-          <para>Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruises always occur on a larger ship than is typical for monthly sample collection, but they use the same CTD rosette collection methods as the full MVCO time series. All other methods including filtering and analysis methods are the same between transect and MVCO standard sampling. </para>
+          <para>Starting in 2003, a monthly water sample has been collected at MVCO. The sample is typically collected using a CTD rosette or bucket during a day trip on a coastal vessel such as the R/V Tioga. Starting in February 2018, 4 of the monthly MVCO water samples per year were collected as part of a larger field sampling campaign during Northeast U.S. Shelf Long-Term Ecological Research project (NES-LTER) quarterly seasonal transect research cruises. </para>
+          <para>Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruises always occur on a larger ship than is typical for monthly sample collection, however, the same MVCO time series CTD rosette collection, sampling protocol, and analysis methods have been used. </para>
           <para># CTD Rosette Bottle and Bucket Sampling  </para>
           <para>Samples were collected from the water column at multiple depths using Niskin bottles on a CTD rosette system. Some samples were collected at the surface with a bucket. In the event_number_niskin field of the data table, MVCO event number is combined with a suffix indicating a bucket sample (_00), Niskin bottle number (e.g. _01), or collaborating institution (_UNH). The depth for bucket samples is 0 m; some surface Niskin samples also have depth recorded as 0 m. </para>
           <para># Nutrient Filtering Protocol</para>
@@ -277,13 +277,13 @@
       <attributeList>
         <attribute>
           <attributeName>event_number</attributeName>
-          <attributeDefinition>Identification number for each MVCO discrete sampling event</attributeDefinition>
+          <attributeDefinition>Identifier for each discrete sampling event (on MVCO day cruise) or cast (on transect cruise)</attributeDefinition>
           <storageType>string</storageType>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Identification number for each MVCO discrete sampling event</definition>
+                  <definition>Identifier for each discrete sampling event (on MVCO day cruise) or cast (on transect cruise)</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -291,13 +291,13 @@
         </attribute>
         <attribute>
           <attributeName>event_number_niskin</attributeName>
-          <attributeDefinition>Identification number for each Niskin or bucket collection during MVCO discrete sampling event</attributeDefinition>
+          <attributeDefinition>Identification number for each bucket collection (suffix _00) or rosette bottle (suffix greater than 0)</attributeDefinition>
           <storageType>string</storageType>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Identification number for each Niskin or bucket collection during MVCO discrete sampling event</definition>
+                  <definition>Identification number for each bucket collection (suffix _00) or rosette bottle (suffix greater than 0)</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -319,13 +319,13 @@
         </attribute>
         <attribute>
           <attributeName>cruise_ID</attributeName>
-          <attributeDefinition>Cruise identifer for the R/V Tioga</attributeDefinition>
+          <attributeDefinition>Identifer for research cruise generally including abbreviation for research vessel and voyage number</attributeDefinition>
           <storageType>string</storageType>
           <measurementScale>
             <nominal>
               <nonNumericDomain>
                 <textDomain>
-                  <definition>Cruise identifer for the R/V Tioga</definition>
+                  <definition>Identifer for research cruise generally including abbreviation for research vessel and voyage number</definition>
                 </textDomain>
               </nonNumericDomain>
             </nominal>
@@ -528,6 +528,10 @@
                   <codeDefinition>
                     <code>1</code>
                     <definition>good</definition>
+                  </codeDefinition>
+                  <codeDefinition>
+                    <code>2</code>
+                    <definition>quality not evaluated, not available or unknown</definition>
                   </codeDefinition>
                   <codeDefinition>
                     <code>3</code>

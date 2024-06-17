@@ -1,8 +1,8 @@
 attributeName	attributeDefinition	class	unit	dateTimeFormatString	missingValueCode	missingValueCodeExplanation
-event_number	Identification number for each MVCO discrete sampling event	character				
-event_number_niskin	Identification number for each Niskin or bucket collection during MVCO discrete sampling event	character				
+event_number	Identifier for each discrete sampling event (on MVCO day cruise) or cast (on transect cruise)	character				
+event_number_niskin	Identification number for each bucket collection (suffix _00) or rosette bottle (suffix greater than 0)	character				
 ship	Name of vessel from which samples were collected	character				
-cruise_ID	Cruise identifer for the R/V Tioga	character				
+cruise_ID	Identifer for research cruise generally including abbreviation for research vessel and voyage number	character				
 datetime	Date and time in UTC when cast started or bucket filled	Date		YYYY-MM-DD hh:mm:ss		
 latitude	Ship's latitude when cast started or latitude of MVCO	numeric	degree		NaN	Missing value
 longitude	Ship's longitude when cast started or longitude of MVCO	numeric	degree		NaN	Missing value

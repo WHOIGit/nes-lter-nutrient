@@ -1,10 +1,10 @@
-﻿# About Martha's Vineyard Coastal Observatory
+# About Martha's Vineyard Coastal Observatory
 
 The Martha's Vineyard Coastal Observatory (MVCO) Air-Sea Interaction Tower (ASIT) is located at 41.325 N, 70.567 W. See https://mvco.whoi.edu/about/ for more site information. Samples were collected in the vicinity of the tower. Early in the time series, samples were also collected from along- and cross-shore transects nearby. 
 
 Starting in 2003, a monthly water sample has been collected at MVCO. The sample is typically collected using a CTD rosette or bucket during a day trip on a coastal vessel such as the R/V Tioga. Starting in February 2018, 4 of the monthly MVCO water samples per year were collected as part of a larger field sampling campaign during Northeast U.S. Shelf Long-Term Ecological Research project (NES-LTER) quarterly seasonal transect research cruises. 
 
-Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruises always occur on a larger ship than is typical for monthly sample collection, however, the same MVCO time series CTD rosette collection, sampling protocol, and anlaysis methods have been used. 
+Transect cruise samples can be differentiated from standard coastal day trips using the event number and event number Niskin parameters because they do not contain 'MVCO', but rather the cruise ID unique to that ship and cruise number. NES-LTER transect cruises always occur on a larger ship than is typical for monthly sample collection, however, the same MVCO time series CTD rosette collection, sampling protocol, and analysis methods have been used. 
 
 # CTD Rosette Bottle and Bucket Sampling  
 
