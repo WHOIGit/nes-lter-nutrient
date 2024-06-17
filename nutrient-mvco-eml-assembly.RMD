@@ -229,8 +229,9 @@ nutrients <- left_join(nutrients, Tioga_ID, by = "event_number")
 nutrients <- nutrients %>%
   select(-date)  %>%
   relocate(ship, .before = datetime) %>%
-  relocate(cruise_ID, .before = datetime)
- 
+  relocate(cruise_ID, .before = datetime) %>%
+  rename(cruise = cruise_ID)
+ #rename cruise_ID to cruise here?
 ```
 
 # Merge MVCO samples from transect cruises
@@ -287,8 +288,8 @@ filtered_nut <- filtered_nut %>%
     TRUE ~ ""  # Set to empty string for unmatched cases
       ),
     event_number = paste(cruise, cast, sep = "_"),  
-    event_number_niskin = paste(cruise, cast, niskin, sep = "_"), 
-    cruise_ID = cruise
+    event_number_niskin = paste(cruise, cast, niskin, sep = "_")#, 
+    #cruise_ID = cruise
   )
 
 # Merge transect nut data with nutrients
@@ -465,7 +466,7 @@ nutrients <- rename(nutrients, nitrate_nitrite = nitrate)
 nutrients <- nutrients %>%
   mutate(
     ship = ifelse(is.na(ship), "", ship),
-    cruise_ID = ifelse(is.na(cruise_ID) | cruise_ID == "NA", "", cruise_ID)
+    cruise = ifelse(is.na(cruise) | cruise == "NA", "", cruise)
   )
 
 ```
@@ -480,6 +481,8 @@ httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
 tf
 
 nutr_pubd <- read_csv(tf, TRUE, show_col_types = FALSE) 
+
+nutr_pubd <- rename(nutr_pubd, cruise = cruise_ID) 
 
 comparison <- compare_df(nutrients, nutr_pubd, c("event_number", "depth"))
 
@@ -514,7 +517,7 @@ EMLassemblyline
 
 ```{r}  
 
-excel_to_template(here('nutrient-mvco-info'), 'nes-lter-nutrient-mvco', rights='CCBY')  
+excel_to_template(here('nutrient-mvco-info'), 'nes-lter-nutrient-mvco', rights='CCBY', file_type=".md")  
 
 ```
 Generate the package and insert the parent project node into the resulting EML

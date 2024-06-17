@@ -1,2 +1,0 @@
-id	unitType	parentSI	multiplierToSI	description
-micromolePerLiter	amountOfSubstanceConcentration	molePerCubicMeter	0.001	micromole per liter

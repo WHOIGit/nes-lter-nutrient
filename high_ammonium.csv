@@ -1,4 +1,4 @@
-"","event_number","event_number_niskin","ship","cruise_ID","datetime","latitude","longitude","depth","replicate","nitrate","ammonium","silicate","phosphate","iode_quality_flag_phosphate"
+"","event_number","event_number_niskin","ship","cruise","datetime","latitude","longitude","depth","replicate","nitrate","ammonium","silicate","phosphate","iode_quality_flag_phosphate"
 "1","MVCO_003","MVCO_003_00",NA,NA,2003-05-29 14:45:00,41.325,-70.5667,0,"a",0.648,13.53,1.845,0.407,1
 "2","MVCO_017","MVCO_017_04",NA,NA,2003-11-18 14:00:00,41.325,-70.5667,12,"b",1.426,6.093,4.052,0.951,1
 "3","MVCO_017","MVCO_017_01",NA,NA,2003-11-18 14:00:00,41.325,-70.5667,0,"a",1.201,14.382,2.59,1.449,1
