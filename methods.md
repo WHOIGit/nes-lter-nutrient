@@ -8,7 +8,7 @@ Transect cruise samples can be differentiated from standard coastal day trips us
 
 # CTD Rosette Bottle and Bucket Sampling  
 
-Samples were collected from the water column at multiple depths using Niskin bottles on a CTD rosette system. Some samples were collected at the surface with a bucket. In the event_number_niskin field of the data table, MVCO event number is combined with a suffix indicating a bucket sample (_00), Niskin bottle number (e.g. _01), or collaborating institution (_UNH). The depth for bucket samples is 0 m; some surface Niskin samples also have depth recorded as 0 m. 
+Samples were collected from the water column at multiple depths using Niskin bottles on a CTD rosette system. Some samples were collected at the surface with a bucket. In the event\_number\_niskin field of the data table, MVCO event number or transect cruise identifier is combined with a suffix indicating a bucket sample (_00), Niskin bottle number (e.g. _01), or, in limited cases, collaborating institution (_UNH). The depth for bucket samples is 0 m; some surface Niskin samples also have depth recorded as 0 m. 
 
 # Nutrient Filtering Protocol
 
@@ -28,7 +28,7 @@ All Below Detection Limit values were set to zero. Event numbers with no nutrien
 
 # Quality Assurance
 
-We assured that the geographic and temporal coverage of the clean data table were within expected ranges. We confirmed that values matched the previous version of this data package. For each nutrient we checked differences between replicates, visually inspected plotted values, and performed a range check. We provided an IODE quality flag for the phosphate data to identify a small number of samples with possible contamination (quality flag 3 for questionable). All other samples are considered good quality.  
+We assured that the geographic and temporal coverage of the clean data table were within expected ranges. We confirmed that values matched the previous version of this data package. For each nutrient we checked differences between replicates, visually inspected plotted values, and performed a range check. We provided an IODE quality flag for the phosphate data to identify a small number of samples with possible contamination (quality flag 3 for questionable). For transect cruises in version 4, phosphate quality is unevaluated (quality flag 2). All other samples are considered good quality.  
 
 # Related Packages
 
