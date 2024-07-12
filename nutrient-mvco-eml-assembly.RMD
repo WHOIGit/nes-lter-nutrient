@@ -1,7 +1,7 @@
 ---
 title: "nutrient-mvco-eml-assembly"
-author: "Kate Morkeski"
-date: "2/3/2022"
+author: "Kate Morkeski and Joanne Koch"
+date: "2024-07-10"
 output: html_document
 ---
 
@@ -39,7 +39,7 @@ here("nes-lter-nutrient")
 ## Read in provided data
 ```{r}
 
-nutrients_input <- read_excel('MVCO_nut_copy20240604.xls') 
+nutrients_input <- read_excel('MVCO_nut_copy20240708.xls') 
 
 ```
 ## Update column names
@@ -231,7 +231,7 @@ nutrients <- nutrients %>%
   relocate(ship, .before = datetime) %>%
   relocate(cruise_ID, .before = datetime) %>%
   rename(cruise = cruise_ID)
- #rename cruise_ID to cruise here?
+ 
 ```
 
 # Merge MVCO samples from transect cruises
@@ -466,8 +466,9 @@ nutrients <- rename(nutrients, nitrate_nitrite = nitrate)
 nutrients <- nutrients %>%
   mutate(
     ship = ifelse(is.na(ship), "", ship),
-    cruise = ifelse(is.na(cruise) | cruise == "NA", "", cruise)
-  )
+    cruise = ifelse(is.na(cruise) | cruise == "NA", "", cruise),
+    depth = round(depth, 1)
+  ) 
 
 ```
 
@@ -495,6 +496,8 @@ create_output_table(comparison, output_type='xlsx', file_name='version_compariso
 ```{r}
   
 # write csv file for package
+nutrients <- nutrients %>%
+   rename(date_time_utc = datetime)
 write.csv(nutrients, "nes-lter-nutrient-mvco.csv", na = "NaN", row.names = FALSE)
 
 ```
@@ -508,7 +511,7 @@ Read data table
 data_table <- read.csv(here('nes-lter-nutrient-mvco.csv'))
 
 # identify date column for ediutilities package to generate temporal coverage
-data_table$date = ymd_hms(data_table$datetime)
+data_table$date = ymd_hms(data_table$date_time_utc)
 
 ```
 
@@ -530,7 +533,7 @@ make_eml(here(),
          data.table='nes-lter-nutrient-mvco.csv',
          data.table.description='Dissolved inorganic nutrients from water column bottle samples taken near the Marthas Vineyard Coastal Observatory',
          data.table.name = 'nes-lter-nutrient-mvco',
-         temporal.coverage = temporal_coverage(data_table$date),
+         temporal.coverage = temporal_coverage(data_table$date_time_utc),
          geographic.description = "Marthas Vineyard Coastal Observatory",
          geographic.coordinates = geographic_coordinates(data_table$latitude, data_table$longitude),
          maintenance.description = "ongoing",
