@@ -24,7 +24,7 @@ Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic 
 
 # Data Cleaning
 
-All Below Detection Limit values were set to zero. Event numbers with no nutrient samples were omitted. Data assembly, cleaning, and metadata assembly were performed in R Markdown. Further documentation can be found on GitHub, at https://github.com/WHOIGit/nes-lter-nutrient. 
+All Below Detection Limit values were set to zero. Event numbers with no nutrient samples were omitted. Data assembly, cleaning, and metadata assembly were performed in R Markdown. Further documentation can be found on GitHub, at https://github.com/WHOIGit/nes-lter-nutrient-mvco. 
 
 # Quality Assurance
 
