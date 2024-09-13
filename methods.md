@@ -30,6 +30,10 @@ All Below Detection Limit values were set to zero. Event numbers with no nutrien
 
 We assured that the geographic and temporal coverage of the clean data table were within expected ranges. We confirmed that values matched the previous version of this data package. For each nutrient we checked differences between replicates, visually inspected plotted values, and performed a range check. We provided an IODE quality flag for the phosphate data to identify a small number of samples with possible contamination (quality flag 3 for questionable). For transect cruises in version 4, phosphate quality is unevaluated (quality flag 2). All other samples are considered good quality.  
 
+# Differences from previous version
+
+In version four, nutrient data from multi-day transect cruises beginning in 2018 and described above were added. The column name "date" was updated to "date\_time\_utc" for consistency with other NES packages. In version five, this section of the methods was added and the Github link above was updated to reflect the renaming of the repository. 
+
 # Related Packages
 
 Dissolved inorganic nutrient data for NES-LTER transect cruises, which cover a larger geographic area of the same region, are in the following package:
