@@ -1,6 +1,5 @@
-# nes-lter-nutrient-mvco
-<<<<<<< HEAD
+# Dissolved inorganic nutrients from the Martha's Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2003 (NES-LTER since 2017)
+
 NES-LTER dissolved nutrient data from the Martha's Vineyard Coastal Observatory site prepared for EDI
-=======
-NES-LTER dissolved nurient data from the Martha's Vineyard Coastal Observatory site prepared for EDI
->>>>>>> 3212c8f5c66bd2fc365a7c7e5aa76667fe6fa8ba
+
+Version 5 of this data package is published to the EDI repository [here](https://doi.org/10.6073/pasta/a5a26fe8dd8ac113641869fe1376da4b)
