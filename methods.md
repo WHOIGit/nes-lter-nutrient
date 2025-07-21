@@ -40,3 +40,6 @@ Dissolved inorganic nutrient data for NES-LTER transect cruises, which cover a l
 
 Sosik, H.M., E. Crockford, and E. Peacock. 2021. Dissolved inorganic nutrients from NES-LTER Transect cruises, including 4 macro-nutrients from water column bottle samples, ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/ec6e5c76c7ad4e0da0a8d1cec84fa3f5 (Accessed 2024-04-16).
 
+Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO), are in the following package:
+
+Sosik, H.M., E.T. Crockford, E. Peacock, and J.K. Llopiz. 2025. Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO) ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/efff67e138fe866c2e763e2ae68e2d34 (Accessed 2025-07-21).
