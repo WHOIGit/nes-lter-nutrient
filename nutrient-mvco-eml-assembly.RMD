@@ -39,7 +39,7 @@ here("nes-lter-nutrient")
 ## Read in provided data
 ```{r}
 
-nutrients_input <- read_excel('MVCO_nut_copy20240708.xls') 
+nutrients_input <- read_excel('MVCO_Nut_reps_copy20260629.xlsx') 
 
 ```
 ## Update column names
@@ -239,28 +239,13 @@ nutrients <- nutrients %>%
 ```{r}
 base_api_url <- 'https://nes-lter-data.whoi.edu/api'
 
-cruise_list <- api_list_cruises()
+nut_url <- glue::glue('{base_api_url}/nut/all.csv')
+print(nut_url)
 
-all_cruises <- NA
-print(cruise_list)
-for(cruise_id in cruise_list) {
-  cruise_id <- str_to_lower(cruise_id)
-  nut_url <- glue::glue('{base_api_url}/nut/{cruise_id}.csv')
-  print(nut_url)
-
-  cruise_nut <- tryCatch(read_csv(nut_url), 
+all_cruises <- tryCatch(read_csv(nut_url), 
                  error=function(cond) 
                      { message(cond)
                        return(NULL) })
-
-  if(nrow(cruise_nut) > 0 && !is.null(cruise_nut)) {
-    if(length(all_cruises) == 1 && is.na(all_cruises)) {
-      all_cruises <- cruise_nut
-    } else {
-      all_cruises <- plyr::rbind.fill(all_cruises, cruise_nut)
-    }
-  }
-}
 
 # Transect MVCO ranges lat =  41.3125 - 41.3269, lon = -70.5629 to -70.5857
 # MVCO_nut_copy ranges lat = 41.1364 - 41.339, lon = -70.4151 to -70.6839
@@ -476,14 +461,17 @@ nutrients <- nutrients %>%
 
 ```{r}
 
-url <- ('https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-nes.1.3&entityid=077bb6d32f84c773852b678f1fe52e57')
+#url <- ('https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-nes.1.3&entityid=077bb6d32f84c773852b678f1fe52e57')
+
+url <- "https://pasta.lternet.edu/package/data/eml/knb-lter-nes/1/5/077bb6d32f84c773852b678f1fe52e57"
 
 httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
 tf
 
-nutr_pubd <- read_csv(tf, TRUE, show_col_types = FALSE) 
+nutr_pubd <- read_csv(tf, TRUE, show_col_types = FALSE)
 
-nutr_pubd <- rename(nutr_pubd, cruise = cruise_ID) 
+nutrients <- nutrients %>%
+   rename(date_time_utc = datetime)
 
 comparison <- compare_df(nutrients, nutr_pubd, c("event_number", "depth"))
 
@@ -496,8 +484,7 @@ create_output_table(comparison, output_type='xlsx', file_name='version_compariso
 ```{r}
   
 # write csv file for package
-nutrients <- nutrients %>%
-   rename(date_time_utc = datetime)
+
 write.csv(nutrients, "nes-lter-nutrient-mvco.csv", na = "NaN", row.names = FALSE)
 
 ```
@@ -527,7 +514,7 @@ Generate the package and insert the parent project node into the resulting EML
 
 ```{r}
 
-pkg_id <- 'knb-lter-nes.1.5'  
+pkg_id <- 'knb-lter-nes.1.6'  
 make_eml(here(),
          dataset.title="Dissolved inorganic nutrients from the Martha's Vineyard Coastal Observatory (MVCO), including 4 macro-nutrients from water column bottle samples, ongoing since 2003 (NES-LTER since 2017)",
          data.table='nes-lter-nutrient-mvco.csv',

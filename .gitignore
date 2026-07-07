@@ -89,6 +89,7 @@ venv.bak/
 .Rproj.user
 # Provided Excel file
 MVCO_nut_copy*.xls
+MVCO_Nut_*copy*.xlsx
 # History files
 .Rhistory   
 # Plot files
