@@ -28,18 +28,18 @@ All Below Detection Limit values were set to zero. Event numbers with no nutrien
 
 # Quality Assurance
 
-We assured that the geographic and temporal coverage of the clean data table were within expected ranges. We confirmed that values matched the previous version of this data package. For each nutrient we checked differences between replicates, visually inspected plotted values, and performed a range check. We provided an IODE quality flag for the phosphate data to identify a small number of samples with possible contamination (quality flag 3 for questionable). For transect cruises in version 4, phosphate quality is unevaluated (quality flag 2). All other samples are considered good quality.  
+We assured that the geographic and temporal coverage of the clean data table were within expected ranges. We confirmed that values matched the previous version of this data package. For each nutrient we checked differences between replicates, visually inspected plotted values, and performed a range check. We provided an IODE quality flag for the phosphate data to identify a small number of samples with possible contamination (quality flag 3 for questionable). For transect cruises in version 6, phosphate quality is unevaluated (quality flag 2). All other samples are considered good quality.  
 
 # Differences from previous version
 
-In version four, nutrient data from multi-day transect cruises beginning in 2018 and described above were added. The column name "date" was updated to "date\_time\_utc" for consistency with other NES packages. In version five, this section of the methods was added and the Github link above was updated to reflect the renaming of the repository. 
+In version 6, data coverage was extended through April 2026. Ship identifiers now include the full name of the ship where applicable. 
 
 # Related Packages
 
 Dissolved inorganic nutrient data for NES-LTER transect cruises, which cover a larger geographic area of the same region, are in the following package:
 
-Sosik, H.M., E. Crockford, and E. Peacock. 2021. Dissolved inorganic nutrients from NES-LTER Transect cruises, including 4 macro-nutrients from water column bottle samples, ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/ec6e5c76c7ad4e0da0a8d1cec84fa3f5 (Accessed 2024-04-16).
+Sosik, H.M., E.T. Crockford, E. Peacock, and OOI CGSN Data Team. 2026. Dissolved inorganic nutrients from NES-LTER Transect cruises, including 4 macro-nutrients from water column bottle samples, ongoing since 2017 ver 4. Environmental Data Initiative. https://doi.org/10.6073/pasta/8789b36bdfda9b1d32bec72a764492f5 (Accessed 2026-08-20).
 
 Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO), are in the following package:
 
-Sosik, H.M., E.T. Crockford, E. Peacock, and J.K. Llopiz. 2025. Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO) ongoing since 2017 ver 2. Environmental Data Initiative. https://doi.org/10.6073/pasta/efff67e138fe866c2e763e2ae68e2d34 (Accessed 2025-07-21).
+Sosik, H.M., E.T. Crockford, E. Peacock, and J.K. Llopiz. 2026. Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO) ongoing since 2017 ver 3. Environmental Data Initiative. https://doi.org/10.6073/pasta/5f9a1cbe834dc36a22e27706504680c2 (Accessed 2026-08-20).

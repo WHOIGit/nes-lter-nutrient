@@ -26,7 +26,7 @@ library(devtools)
 library(EML)
 library(maps)
 library(xml2)
-library(geosphere)
+#library(geosphere)
 library(httr)
 library(compareDF)
 library(dplyr)
@@ -266,10 +266,11 @@ filtered_nut <- filtered_nut %>%
 # Add ship, event_number, event_number_niskin, and cruise_ID columns and populate
 filtered_nut <- filtered_nut %>%
   mutate(ship = case_when(
-    grepl("^AR", cruise) ~ "Armstrong",
+    grepl("^AR", cruise) ~ "Neil Armstrong",
     grepl("^AT", cruise) ~ "Atlantis",
     grepl("^EN", cruise) ~ "Endeavor",
-    grepl("^HRS", cruise) ~ "Sharp",
+    grepl("^HRS", cruise) ~ "Hugh R. Sharp",
+    grepl("^AE", cruise) ~ "Atlantic Explorer",
     TRUE ~ ""  # Set to empty string for unmatched cases
       ),
     event_number = paste(cruise, cast, sep = "_"),  
@@ -461,14 +462,13 @@ nutrients <- nutrients %>%
 
 ```{r}
 
-#url <- ('https://portal.edirepository.org/nis/dataviewer?packageid=knb-lter-nes.1.3&entityid=077bb6d32f84c773852b678f1fe52e57')
+# # to use this method, update to use authentication
+# url <- "https://pasta.lternet.edu/package/data/eml/knb-lter-nes/1/5/077bb6d32f84c773852b678f1fe52e57"
+# httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
+# tf
+# nutr_pubd <- read_csv(tf, TRUE, show_col_types = FALSE)
 
-url <- "https://pasta.lternet.edu/package/data/eml/knb-lter-nes/1/5/077bb6d32f84c773852b678f1fe52e57"
-
-httr::GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
-tf
-
-nutr_pubd <- read_csv(tf, TRUE, show_col_types = FALSE)
+nutr_pubd <- read_csv("nes-lter-nutrient-mvco_v5.csv", TRUE, show_col_types = FALSE)
 
 nutrients <- nutrients %>%
    rename(date_time_utc = datetime)
