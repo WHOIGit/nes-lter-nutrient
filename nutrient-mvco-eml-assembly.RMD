@@ -229,8 +229,7 @@ nutrients <- left_join(nutrients, Tioga_ID, by = "event_number")
 nutrients <- nutrients %>%
   select(-date)  %>%
   relocate(ship, .before = datetime) %>%
-  relocate(cruise_ID, .before = datetime) %>%
-  rename(cruise = cruise_ID)
+  relocate(cruise, .before = datetime) 
  
 ```
 
@@ -278,6 +277,15 @@ filtered_nut <- filtered_nut %>%
     #cruise_ID = cruise
   )
 
+# Set values below detection to zero
+# Transect cruises have values below detection set to the detection limit. Change these to zero to match the rest of this data set
+# nitrate 0.04, ammonium 0.01, phosphate 0.009, silicate 0.03
+filtered_nut <- filtered_nut |>
+  mutate(nitrate = case_when(nitrate == 0.04 ~ 0, TRUE ~ nitrate)) |>
+  mutate(ammonium = case_when(ammonium == 0.01 ~ 0, TRUE ~ ammonium))|>   
+  mutate(phosphate = case_when(phosphate == 0.009 ~ 0, TRUE ~ phosphate)) |>           
+  mutate(silicate = case_when(silicate == 0.03 ~ 0, TRUE ~ silicate))
+                                                  
 # Merge transect nut data with nutrients
 common_columns <- intersect(names(nutrients), names(filtered_nut))
 filtered_nut_aligned <- filtered_nut %>% select(all_of(common_columns))
@@ -337,6 +345,61 @@ write.csv(high_ammonium, "high_ammonium.csv")
 
 ```
 ## QA: Plot nutrients as a check
+
+```{r}
+
+ggplot(data = nutrients, aes(x = date_time_utc, y = nitrate_nitrite)) + geom_point() +
+  xlab("date") + ylab("nitrate concentration (µmol/L)") +
+  scale_x_date(date_breaks = "5 years", date_minor_breaks = "1 year", date_labels = "%Y") +
+  theme_minimal()
+ggsave("timeseries_point_nitrate.png")
+
+ggplot(data = nutrients, aes(x = date_time_utc, y = ammonium)) + geom_point() +
+  xlab("date") + ylab("ammonium concentration (µmol/L)") +
+  scale_x_date(date_breaks = "5 years", date_minor_breaks = "1 year", date_labels = "%Y") +
+  theme_minimal()
+ggsave("ammonium_point_nitrate.png")
+
+ggplot(data = nutrients, aes(x = date_time_utc, y = phosphate, color = iode_quality_flag_phosphate)) + geom_point() +
+  xlab("date") + ylab("phosphate (µmol/L)") +
+  scale_x_date(date_breaks = "5 years", date_minor_breaks = "1 year", date_labels = "%Y") +
+  theme_minimal()
+ggsave("timeseries_point_phosphate.png")
+
+ggplot(data = nutrients, aes(x = date_time_utc, y = silicate)) + geom_point() +
+  xlab("date") + ylab("silicate concentration (µmol/L)") +
+  scale_x_date(date_breaks = "5 years", date_minor_breaks = "1 year", date_labels = "%Y") +
+  theme_minimal()
+ggsave("timeseries_point_silicate.png")
+
+# line plots
+ggplot(data = nutrients, aes(x = date_time_utc, y = nitrate_nitrite)) + geom_line() +
+  xlab("date") + ylab("nitrate concentration (µmol/L)") +
+  scale_x_date(date_breaks = "5 years", date_minor_breaks = "1 year", date_labels = "%Y") +
+  theme_minimal()
+ggsave("timeseries_nitrate.png")
+
+ggplot(data = nutrients, aes(x = date_time_utc, y = ammonium)) + geom_line() +
+  xlab("date") + ylab("ammonium concentration (µmol/L)") +
+  scale_x_date(date_breaks = "5 years", date_minor_breaks = "1 year", date_labels = "%Y") +
+  theme_minimal()
+ggsave("ammonium_nitrate.png")
+
+ggplot(data = nutrients, aes(x = date_time_utc, y = phosphate, color = iode_quality_flag_phosphate)) + geom_line() +
+  xlab("date") + ylab("phosphate (µmol/L)") +
+  scale_x_date(date_breaks = "5 years", date_minor_breaks = "1 year", date_labels = "%Y") +
+  theme_minimal()
+ggsave("timeseries_phosphate.png")
+
+ggplot(data = nutrients, aes(x = date_time_utc, y = silicate)) + geom_line() +
+  xlab("date") + ylab("silicate concentration (µmol/L)") +
+  scale_x_date(date_breaks = "5 years", date_minor_breaks = "1 year", date_labels = "%Y") +
+  theme_minimal()
+ggsave("timeseries_silicate.png")
+
+
+```
+
 
 Make boxplots based on all nutrient values
 

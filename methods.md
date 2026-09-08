@@ -24,7 +24,7 @@ Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic 
 
 # Data Cleaning
 
-All Below Detection Limit values were set to zero. Event numbers with no nutrient samples were omitted. Data assembly, cleaning, and metadata assembly were performed in R Markdown. Further documentation can be found on GitHub, at https://github.com/WHOIGit/nes-lter-nutrient-mvco. 
+All Below Detection Limit values were set to zero. Note that transect cruise values below detection are handled differently in the transect nutrient data package (see Related Packages below), where values below detection are set to the detection limit. Event numbers with no nutrient samples were omitted. Data assembly, cleaning, and metadata assembly were performed in R Markdown. Further documentation can be found on GitHub, at https://github.com/WHOIGit/nes-lter-nutrient-mvco. 
 
 # Quality Assurance
 
@@ -32,7 +32,7 @@ We assured that the geographic and temporal coverage of the clean data table wer
 
 # Differences from previous version
 
-In version 6, data coverage was extended through April 2026. Ship identifiers now include the full name of the ship where applicable. 
+In version 6, data coverage was extended through April 2026. Transect cruise values below detection are now set to zero instead of to the nutrient detection limit. Ship identifiers now include the full name of the ship where applicable. 
 
 # Related Packages
 

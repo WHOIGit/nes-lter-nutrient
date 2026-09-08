@@ -41,7 +41,7 @@
       <electronicMailAddress>epeacock@whoi.edu</electronicMailAddress>
       <userId directory="https://orcid.org">https://orcid.org/0000-0003-0194-7282</userId>
     </creator>
-    <pubDate>2026-08-20</pubDate>
+    <pubDate>2026-09-08</pubDate>
     <abstract>
       <para>Dissolved inorganic nutrients including nitrate + nitrite, ammonium, silicate, and phosphate are measured from water column bottle and bucket samples taken on NES-LTER day cruises in the vicinity of the Martha's Vineyard Coastal Observatory (MVCO). Sampling frequency near MVCO is approximately monthly, ongoing since 2003. Samples were filtered, frozen, then processed at the Woods Hole Oceanographic Institution's Nutrient Analytical Facility. These macro-nutrients are analyzed in seawater using a colorimetric assay in which light absorbance is measured versus known standards, and final concentrations are calculated (in micromole per liter). Each sample may have up to 3 replicates.</para>
     </abstract>
@@ -131,7 +131,7 @@ Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic 
 
 # Data Cleaning
 
-All Below Detection Limit values were set to zero. Event numbers with no nutrient samples were omitted. Data assembly, cleaning, and metadata assembly were performed in R Markdown. Further documentation can be found on GitHub, at https://github.com/WHOIGit/nes-lter-nutrient-mvco. 
+All Below Detection Limit values were set to zero. Note that transect cruise values below detection are handled differently in the transect nutrient data package (see Related Packages below), where values below detection are set to the detection limit. Event numbers with no nutrient samples were omitted. Data assembly, cleaning, and metadata assembly were performed in R Markdown. Further documentation can be found on GitHub, at https://github.com/WHOIGit/nes-lter-nutrient-mvco. 
 
 # Quality Assurance
 
@@ -139,7 +139,7 @@ We assured that the geographic and temporal coverage of the clean data table wer
 
 # Differences from previous version
 
-In version 6, data coverage was extended through April 2026. Ship identifiers now include the full name of the ship where applicable. 
+In version 6, data coverage was extended through April 2026. Transect cruise values below detection are now set to zero instead of to the nutrient detection limit. Ship identifiers now include the full name of the ship where applicable. 
 
 # Related Packages
 
@@ -288,8 +288,8 @@ Sosik, H.M., E.T. Crockford, E. Peacock, and J.K. Llopiz. 2026. Event logs from 
       <entityDescription>Dissolved inorganic nutrients from water column bottle samples taken near the Marthas Vineyard Coastal Observatory</entityDescription>
       <physical>
         <objectName>nes-lter-nutrient-mvco.csv</objectName>
-        <size unit="bytes">263753</size>
-        <authentication method="MD5">6b636a1b54b9a48cc257564ff3a456ab</authentication>
+        <size unit="bytes">263990</size>
+        <authentication method="MD5">0209615418bf0379b9670a82b6fc06cc</authentication>
         <dataFormat>
           <textFormat>
             <numHeaderLines>1</numHeaderLines>
