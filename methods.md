@@ -24,7 +24,7 @@ Samples are stored at -20 deg C until submitted to the Woods Hole Oceanographic 
 
 # Data Cleaning
 
-All Below Detection Limit values were set to zero. Note that transect cruise values below detection are handled differently in the transect nutrient data package (see Related Packages below), where values below detection are set to the detection limit. Event numbers with no nutrient samples were omitted. Data assembly, cleaning, and metadata assembly were performed in R Markdown. Further documentation can be found on GitHub, at https://github.com/WHOIGit/nes-lter-nutrient-mvco. 
+All values below detection were set to zero. Note that transect cruise values below detection are handled differently in the transect nutrient data package (see Related Packages below), where values below detection are set to the detection limit. Event numbers with no nutrient samples were omitted. Data assembly, cleaning, and metadata assembly were performed in R Markdown. Further documentation can be found on GitHub, at https://github.com/WHOIGit/nes-lter-nutrient-mvco. 
 
 # Quality Assurance
 
@@ -43,3 +43,5 @@ Sosik, H.M., E.T. Crockford, E. Peacock, and OOI CGSN Data Team. 2026. Dissolved
 Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO), are in the following package:
 
 Sosik, H.M., E.T. Crockford, E. Peacock, and J.K. Llopiz. 2026. Event logs from Northeast U.S. Shelf Long Term Ecological Research (NES-LTER) cruises to the Martha's Vineyard Coastal Observatory (MVCO) ongoing since 2017 ver 3. Environmental Data Initiative. https://doi.org/10.6073/pasta/5f9a1cbe834dc36a22e27706504680c2 (Accessed 2026-08-20).
+
+Tioga cruise data are available from the WHOI Data Library and Archives here: https://dlacruisedata.whoi.edu/tioga/cruise/
